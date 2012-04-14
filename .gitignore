@@ -15,4 +15,4 @@
 /tmp
 
 # Ignore config file
-/config/*.yml
+database.yml
