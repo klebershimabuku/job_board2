@@ -7,6 +7,7 @@ group :developement, :test do
   gem 'mysql2'
   gem 'rspec-rails', '2.9.0'
   gem 'guard-rspec', '0.5.5'
+  gem 'simplecov', '0.6.1', :require => false
 end
 
 group :test do 
@@ -14,7 +15,7 @@ group :test do
   gem 'rb-inotify', '0.8.8'
   gem 'libnotify', '0.5.9'
   gem 'guard-spork', '0.3.2'
-  gem 'spork', '0.9.0'
+  gem 'spork', '~> 1.0rc'
 end
 
 group :production do

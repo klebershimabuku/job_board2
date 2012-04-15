@@ -16,3 +16,4 @@
 
 # Ignore config file
 database.yml
+coverage
