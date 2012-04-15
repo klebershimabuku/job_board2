@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "StaticPages" do
 
   subject { page }
+  let(:base_title) { "ShigotoDoko" }
 
   describe 'Home Page' do
     before(:each) { visit '/static_pages/home' }
@@ -10,7 +11,7 @@ describe "StaticPages" do
       should have_selector('h1', :text => 'Bem vindo')
     end
     it "should have the right title" do
-      should have_selector('title', :text => "Home - ShigotoDoko")
+      should have_selector('title', :text => "Home - #{base_title}")
     end
   end
 
@@ -20,7 +21,7 @@ describe "StaticPages" do
       should have_selector('h1', :text => 'Ajuda')
     end
     it "should have the right title" do
-      should have_selector('title', :text => "Ajuda - ShigotoDoko")
+      should have_selector('title', :text => "Ajuda - #{base_title}")
     end
   end
 
@@ -30,7 +31,17 @@ describe "StaticPages" do
       should have_selector('h1', :text => 'Sobre')
     end
     it "should have the right title" do
-      should have_selector('title', :text => "Sobre - ShigotoDoko")
+      should have_selector('title', :text => "Sobre - #{base_title}")
+    end
+  end
+
+  describe "Contact page" do
+    before(:each) { visit '/static_pages/contact' }
+    it "should have the content 'Contact'" do
+      should have_selector('h1', :text => 'Contato')
+    end
+    it "should have the right title" do
+      should have_selector('title', :text => "Contato - #{base_title}")
     end
   end
 end
