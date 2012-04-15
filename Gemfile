@@ -6,10 +6,13 @@ gem 'jquery-rails'
 group :developement, :test do 
   gem 'mysql2'
   gem 'rspec-rails', '2.9.0'
+  gem 'guard-rspec', '0.5.5'
 end
 
 group :test do 
   gem 'capybara', '1.1.2'
+  gem 'rb-inotify', '0.8.8'
+  gem 'libnotify', '0.5.9'
 end
 
 group :production do
