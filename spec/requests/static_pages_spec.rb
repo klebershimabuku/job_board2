@@ -11,7 +11,10 @@ describe "StaticPages" do
       should have_selector('h1', :text => 'Bem vindo')
     end
     it "should have the right title" do
-      should have_selector('title', :text => "Home - #{base_title}")
+      should have_selector('title', :text => "ShigotoDoko")
+    end
+    it "should not have a custom page title" do
+      should_not have_selector('title', :text => "Home -")
     end
   end
 
