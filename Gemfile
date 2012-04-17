@@ -3,12 +3,14 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.3'
 gem 'jquery-rails'
 gem 'bootstrap-sass', '2.0.0'
+gem 'devise', '~> 2.1rc'
 
 group :developement, :test do 
   gem 'mysql2'
   gem 'rspec-rails', '2.9.0'
   gem 'guard-rspec', '0.5.5'
   gem 'simplecov', '0.6.1', :require => false
+  gem 'annotate', '~> 2.4.1.beta'
 end
 
 group :test do 
