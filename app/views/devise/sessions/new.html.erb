@@ -1,0 +1,24 @@
+<% provide(:title, "Entrar") %>
+<h1>Iniciar sessão</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div><%= f.label :email %>
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label :password, "Senha" %>
+  <%= f.password_field :password %></div>
+
+  <% if devise_mapping.rememberable? -%>
+    <div><%= f.check_box :remember_me %> <%= f.label :remember_me, "Lembrar minha senha" %></div>
+  <% end -%>
+
+  <div><%= f.submit "Entrar", class: "btn btn-large btn-primary" %></div>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>
+
+  </div>
+</div>

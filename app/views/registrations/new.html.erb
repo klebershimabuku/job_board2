@@ -1,0 +1,26 @@
+<% provide(:title, 'Cadastro') %>
+<h1>Formulário de Cadastro</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div><%= f.label :name, "Nome" %>
+      <%= f.text_field :name %></div>
+
+      <div><%= f.label :email %>
+      <%= f.email_field :email %></div>
+
+      <div><%= f.label :password, "Senha" %>
+      <%= f.password_field :password %></div>
+
+      <div><%= f.label :password_confirmation, "Confirme sua senha" %>
+      <%= f.password_field :password_confirmation %></div>
+
+      <div><%= f.submit "Cadastrar agora", class: "btn btn-large btn-primary" %></div>
+    <% end %>
+
+    <%= render :partial => "devise/shared/links" %>
+  </div>
+</div>

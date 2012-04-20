@@ -1,0 +1,20 @@
+<% provide(:title, "Cadastro efetuado com sucesso") %>
+
+<h1>Parabéns!</h1>
+<h2>Seu cadastro foi efetuado com sucesso.</h2>
+
+
+
+<% if user_signed_in? %>
+
+<div class="row">
+  <div class="span6 offset3">
+
+<p>A partir de agora você já pode acessar sua <%= link_to "página de perfil", user_path(current_user) %>.</p>
+
+  </div>
+</div>
+
+<% end %>
+
+
