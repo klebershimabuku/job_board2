@@ -52,14 +52,6 @@ describe "UserPages" do
     before { visit user_path(user) }
     it { should have_selector('h1', text: user.name) }
     it { should have_selector('title', text: user.name) }
-
-    pending "when gravatar size is specified" do
-      it { should have_content(gravatar_for(user, size: "100x100")) }
-    end
-
-    pending "when gravatar size is not specified" do
-      it { should have_content(gravatar_for(user)) }
-    end
   end
 
   describe "authentication page" do
@@ -99,12 +91,13 @@ describe "UserPages" do
   end
 
   describe "forgotten password page" do
+    let(:user) { FactoryGirl.create(:user) }    
     before { visit new_user_password_path }
+
     it { should have_selector('title', text: "Esqueci minha senha")}
     it { should have_selector('h1', text: "Esqueceu sua senha?")}
-
+    
     describe "with valid information" do
-      let(:user) { FactoryGirl.create(:user) }
       before do
         fill_in "Email", with: user.email 
         click_button "Enviar instruções para definir uma nova senha" 

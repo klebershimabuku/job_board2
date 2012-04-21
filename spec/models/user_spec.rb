@@ -91,8 +91,8 @@ describe User do
     it { should_not be_valid }
   end
 
-  pending "when password confirmation is nil" do
-    before { @user.password_confirmation = nil }
+  describe "when password confirmation is blank" do
+    before { @user.password_confirmation = '' }
     it { should_not be_valid }
   end
 

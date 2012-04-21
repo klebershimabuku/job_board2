@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.3'
 gem 'jquery-rails'
 gem 'bootstrap-sass', '2.0.0'
-gem 'devise', '~> 2.1rc'
+gem 'devise', '2.0.4'
 
 group :developement, :test do 
   gem 'mysql2'
