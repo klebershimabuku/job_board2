@@ -63,5 +63,7 @@ module JobBoard2
     config.assets.version = '1.0'
 
     config.assets.initialize_on_compile = false
+
+    config.action_mailer.default_url_options = { :host => 'localhost' }
   end
 end

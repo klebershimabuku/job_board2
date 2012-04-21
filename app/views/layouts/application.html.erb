@@ -11,16 +11,7 @@
 <%= render 'layouts/header' %>
 <div class="container">
 
-  <!-- flash messages -->
-  <% flash.each do |key, value| %>
-    <%= content_tag(:div, 
-                    value, 
-                    class: "alert alert-block alert-#{key == :notice ? 'success' : key} \
-                    data-dismiss='alert'") 
-    %>
-  <% end %>
-  <!-- end of flash messages -->
-
+  <%= render 'layouts/flash_message' %>
   <%= yield %>
   <%= render 'layouts/footer' %>
   <%= debug(params) if Rails.env.development? %>

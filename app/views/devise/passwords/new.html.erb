@@ -1,12 +1,24 @@
-<h2>Forgot your password?</h2>
+<% provide(:title, "Esqueci minha senha") %>
+<h1>Esqueceu sua senha?</h1>
+<h2>Não se preocupe! É absolutamente normal esquecer a senha :)</h2>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+<h4>Em situações como essa, iremos lhe auxiliar na criação de uma nova senha.</h4>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+<p>Para isso, preencha o campo abaixo com o email utilizado no seu cadastro e clique no botão
+    <b>Enviar instruções para definir uma nova senha</b></p>
+<p>Será enviado então um email para o endereço especificado contendo instruções em como proceder.</p>
 
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+      <%= devise_error_messages! %>
 
-<%= render :partial => "devise/shared/links" %>
+      <p><%= f.label :email %>
+      <%= f.email_field :email %></p>
+
+      <p><%= f.submit "Enviar instruções para definir uma nova senha", class: 'btn btn-large btn-primary' %></p>
+    <% end %>
+
+    <%= render :partial => "devise/shared/links" %>
+    </div>
+</div>

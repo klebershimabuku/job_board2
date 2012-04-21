@@ -5,17 +5,17 @@
   <div class="span6 offset3">
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %>
-  <%= f.email_field :email %></div>
+  <p><%= f.label :email %>
+  <%= f.email_field :email %></p>
 
-  <div><%= f.label :password, "Senha" %>
-  <%= f.password_field :password %></div>
+  <p><%= f.label :password, "Senha" %>
+  <%= f.password_field :password %></p>
 
   <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me, "Lembrar minha senha" %></div>
+    <p><%= f.check_box :remember_me %> <%= f.label :remember_me, "Lembrar minha senha" %></p>
   <% end -%>
 
-  <div><%= f.submit "Entrar", class: "btn btn-large btn-primary" %></div>
+  <p><%= f.submit "Entrar", class: "btn btn-large btn-primary" %></p>
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>
