@@ -17,7 +17,8 @@ describe User do
     @user = User.new(name: "Foobar Rails", 
                     email: "foobar@rails.com", 
                     password: "EncrypTeDPa$$w0rD", 
-                    password_confirmation: "EncrypTeDPa$$w0rD"
+                    password_confirmation: "EncrypTeDPa$$w0rD",
+                    role: 'member'
                   )
   end
 
@@ -34,8 +35,19 @@ describe User do
   it { should respond_to(:last_sign_in_at) }
   it { should respond_to(:current_sign_in_ip) }
   it { should respond_to(:last_sign_in_ip) }
+  it { should respond_to(:role) }
 
   it { should be_valid }
+
+  describe "should be admin" do
+    before { @user.role = 'admin' }
+    it { should be_valid }
+  end
+
+  describe "when role is not present" do
+    before { @user.role = ' ' }
+    it { should_not be_valid }
+  end
 
   describe "when name is not present" do
     before { @user.name = ' ' }

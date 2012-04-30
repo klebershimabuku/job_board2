@@ -12,5 +12,18 @@ module ApplicationHelper
     when :alert then "alert alert-error"
     end
   end
-  
+
+  def admin?
+    current_user.role == 'admin'
+  end
+
+  def special_flash(value)
+    f = '--'
+    if value.include?(f)
+      nv = value.split(f)
+      content_tag(:strong, nv[0]) + nv[1]
+    else
+      value
+    end
+  end
 end

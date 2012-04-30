@@ -46,7 +46,11 @@ Spork.prefork do
 
     # Devise configuration
     config.include Devise::TestHelpers, :type => :controller
+    config.extend ControllerMacros, :type => :controller
 
+    # FactoryGirl
+    config.include FactoryGirl::Syntax::Methods
+    
     # Database Cleaner
     config.before(:each) do
       DatabaseCleaner.start

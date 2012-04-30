@@ -1,0 +1,30 @@
+<% provide(:title, 'Edição de perfil') %>
+<h1>Atualize seu perfil</h1>
+<div class="row">
+  <div class="span3 offset1">
+    <p><%= gravatar_for(@user) %><br /><a href="http://gravatar.com/emails" target="_blank">Mudar foto</a></p>
+  </div>
+  <div class="span4">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <p><%= f.label :name, "Nome" %>
+      <%= f.text_field :name %></p>
+      <p><%= f.label :email, "E-mail" %>
+      <%= f.text_field :email %></p>
+      <p><%= f.label :password, "Senha" %>
+      <%= f.password_field :password %></p>
+      <p><%= f.label :password_confirmation, "Confirme sua senha" %>
+      <%= f.password_field :password_confirmation %></p>
+      <p><%= f.submit "Salvar alterações", class: 'btn btn-large btn-primary' %></p>
+    <% end %>
+  </div>
+  <div class="span12">
+    <% if can? :update, @user %>
+    <p><strong>Não está contente com nossos serviços?</strong></p>
+    <p><%= link_to "Excluir minha conta", user_path(@user), 
+                                            method: :delete, 
+                                            alert: "Tem certeza que deseja excluir esta conta?",
+                                            class: 'btn btn-mini btn-danger' %></p>
+    <% end %>
+  </div>
+</div>

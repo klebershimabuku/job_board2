@@ -1,0 +1,7 @@
+<li>
+  <%= gravatar_for user, size: '40x40' %>
+  <%= link_to "#{user.name} <#{user.email}>", user_path(user) %>
+  <% if ( (can? :delete, User) && (current_user != user) ) %>
+    <br /><%= link_to 'Excluir usuário', user_path(user), method: :delete, confirm: "Tem certeza?", class: 'btn-small btn-danger'%>
+  <% end %>
+</li>
