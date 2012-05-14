@@ -2,10 +2,11 @@
 class UsersController < ApplicationController
   load_and_authorize_resource except: :welcome
   before_filter :authenticate_user!
-  before_filter :find_user, only: [:show, :edit, :destroy]
-  before_filter :admin_user, only: :destroy
+  before_filter :find_user, only: [:show, :edit, :update, :destroy]
 
-  def welcome; end
+  def welcome 
+    redirect_to root_path if current_user && current_user.sign_in_count > 1
+  end
 
   def index
     @users = User.paginate(page: params[:page])
@@ -16,10 +17,9 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
-    @user = User.find(current_user.id)
     if @user.update_attributes(params[:user])
       flash[:success] = "Perfil salvo com sucesso!"
-      sign_in @user, :bypass => true
+      sign_in @user, :bypass => true unless current_user.role == 'admin'
       redirect_to @user
     else
       render 'edit'
@@ -27,7 +27,11 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.destroy
+    @user.destroy
+    if current_user.role == 'member' 
+      flash[:success] = "Seu cadastro foi removido."
+      redirect_to root_path
+    elsif current_user.role == 'admin'
       flash[:success] = "#{@user.name} -- foi excluído."
       redirect_to users_path
     end
@@ -38,7 +42,4 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def admin_user
-    redirect_to root_path unless current_user.role == 'admin' 
-  end
 end
