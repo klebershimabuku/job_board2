@@ -7,6 +7,11 @@ JobBoard2::Application.routes.draw do
                                             :sign_out => "logout" 
                                           }
   resources :users
+  resources :posts do
+    collection do
+      get :successful_submitted, as: 'successful_submitted'
+    end
+  end
 
   match '/seja-bem-vindo', :to => 'users#welcome', :as => 'user_registration_successfull'
   match "/ajuda", to: "static_pages#help"

@@ -19,4 +19,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :role
   validates :name,  presence: true, length: { maximum: 50 }
   validates :role,  presence: true
+
+  # Create associations
+  has_many :posts
 end

@@ -11,4 +11,12 @@ FactoryGirl.define do
       role "admin"
     end
   end
+
+  factory :post do
+    title "Some title"
+    description "Type some text here"
+    location "Home"
+    status "pending"
+    association :user
+  end
 end

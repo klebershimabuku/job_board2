@@ -116,7 +116,7 @@ describe "UserPages" do
             end
             context "submitting to the update action" do 
               before { put user_path(user) }
-              specify { response.should redirect_to(root_path) }
+              specify { response.should redirect_to root_path }
             end
             context "visiting the index" do
               before { visit users_path }

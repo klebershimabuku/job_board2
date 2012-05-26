@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   # handle unauthorized access
   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :alert => 'Acesso Negado'
+    redirect_to root_path, :alert => 'Acesso Negado'
   end
 
   # redirect registered users to a profile page

@@ -7,14 +7,12 @@ class Ability
 
     if user.role == 'admin'
       can :manage, :all
+    elsif user.role == 'member'
+      can :read, User
+      can :manage, [User,Post] , :id => user.id
+      cannot :index, User # list users page
+    else
+      can :read, :all
     end
-
-    if user.role == 'member'
-      can :manage, User, :id => user.id
-      cannot :index, User
-    end
-
-    can [:welcome, :read, :create, :new], User
-
   end
 end

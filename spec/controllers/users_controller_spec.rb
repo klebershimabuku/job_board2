@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe UsersController do 
   include Devise::TestHelpers
-  render_views
 
   describe 'GET welcome' do
 
@@ -53,30 +52,26 @@ describe UsersController do
   end
 
   describe 'GET show' do
+    let(:user) { FactoryGirl.create(:user) }
 
     context 'for logged-in user' do 
       login_user
-      before(:each) { @user = FactoryGirl.create(:user) }
+      before { get :show, id: user }
       it 'should find a user and return object' do
-        get :show, id: @user 
-        assigns[:user].name.should == @user.name
+        assigns[:user].name.should == user.name
       end
-      context 'for logged in user' do 
-        it 'load the user profile page' do
-          get :show, id: @user
-          response.should be_successful
-        end
-      end
+      xit { response.should be_successful }
     end
 
     context 'for non logged-in user' do
-      before(:each) { @user = FactoryGirl.create(:user) }
-      it 'should find a user and return object' do
+      before do
+        @user = FactoryGirl.create(:user)
         get :show, id: @user
+      end
+      it 'should find a user and return object' do
         assigns[:user].name.should == @user.name
       end
       it 'deny access' do
-        get :show, id: @user
         response.should_not be_successful
       end
     end
@@ -124,7 +119,7 @@ describe UsersController do
             put :update, id: user
           end
           it { response.should redirect_to user_path(user) }
-          it { response.should_not redirect_to root_path }
+          it { response.should_not redirect_to new_user_session_path }
         end
 
         context 'with invalid information' do

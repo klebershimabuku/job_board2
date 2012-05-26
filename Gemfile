@@ -12,7 +12,7 @@ gem 'thin'
 
 group :developement, :test do 
   gem 'mysql2'
-  gem 'rspec-rails', '2.9.0'
+  gem 'rspec-rails', '2.10.1'
   gem 'guard-rspec', '0.5.5'
   gem 'simplecov', '0.6.1', :require => false
   gem 'annotate', '~> 2.4.1.beta'
@@ -27,6 +27,7 @@ group :test do
   gem 'spork', '~> 1.0rc'
   gem 'factory_girl_rails', '1.4.0'
   gem 'database_cleaner', '0.7.0'
+  gem 'shoulda'
 end
 
 group :production do

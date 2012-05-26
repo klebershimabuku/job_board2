@@ -1,0 +1,31 @@
+<% provide(:title, "Novo anúncio") %>
+
+  <% if @post.errors.any? %>
+  <h3>Os seguintes erros foram encontrados:</h3>
+  <ul>
+    <% @post.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+
+<h1>Novo anúncio</h1>
+
+<%= form_for(@post) do |f| %>
+  <p>
+    <%= f.label :title, "Título" %>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description, "Descrição" %>
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :location, "Localização" %>
+    <%= f.text_field :location %>
+  </p>
+  <p>
+    <%= f.submit "Enviar", class: 'btn btn-large btn-primary' %>
+  </p>
+<% end %>

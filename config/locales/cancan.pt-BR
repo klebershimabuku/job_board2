@@ -1,0 +1,7 @@
+# encoding: UTF-8
+# pt-BR translations for CanCan
+pt-BR:
+  unauthorized:
+    manage:
+      all: "Não autorizado para %{action} %{subject}"
+      user: "Acesso Negado"
