@@ -23,20 +23,20 @@ describe Post do
 
     context "when location is 'Shizuoka-ken'" do
       before { @post = Post.create!(@attributes) }
-      it { @post.tags.should == ['shizuoka-ken'] }
+      it { @post.tags.should == 'shizuoka-ken' }
     end
 
     context "when location is 'Aichi-ken'" do 
       before { @post = Post.create!(@attributes.merge(location: 'Aichi-ken')) }
-      it { @post.tags.should == ['aichi-ken'] }
+      it { @post.tags.should == 'aichi-ken' }
     end
     context "when location is 'Kanagawa-ken, Yokohama-shi'" do 
       before { @post = Post.create!(@attributes.merge(location: 'Kanagawa-ken, Yokohama-shi')) }
-      it { @post.tags.should == ['kanagawa-ken'] }
+      it { @post.tags.should == 'kanagawa-ken' }
     end
     context "when location is 'Kanagawa-ken, Yokohama-shi, Gifu-ken, Tochigi-ken'" do 
       before { @post = Post.create!(@attributes.merge(location: 'Kanagawa-ken, Yokohama-shi, Gifu-ken, Tochigi-ken')) }
-      it { @post.tags.should == ['kanagawa-ken','gifu-ken','tochigi-ken'] }
+      it { @post.tags.should == 'kanagawa-ken,gifu-ken,tochigi-ken' }
     end
   end
 
