@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
   def generate_tags
     words = location.split(',')
     provinces = []
-    words.each { |w| w.include?('ken') ? provinces << w.downcase : next }
+    words.each { |w| w.include?('ken') ? provinces << w.downcase.strip : next }
     self.tags = provinces
   end
 
