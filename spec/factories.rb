@@ -15,8 +15,9 @@ FactoryGirl.define do
   factory :post do
     title "Some title"
     description "Type some text here"
-    location "Home"
+    location "Shizuoka-ken"
     status "pending"
+    tags 'shizuoka-ken'
     association :user
   end
 end

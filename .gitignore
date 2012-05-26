@@ -17,3 +17,6 @@
 # Ignore config file
 database.yml
 coverage
+
+# Ignore development config
+/config/environments/development.rb
