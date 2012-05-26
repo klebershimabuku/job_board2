@@ -36,7 +36,7 @@ describe Post do
     end
     context "when location is 'Kanagawa-ken, Yokohama-shi, Gifu-ken, Tochigi-ken'" do 
       before { @post = Post.create!(@attributes.merge(location: 'Kanagawa-ken, Yokohama-shi, Gifu-ken, Tochigi-ken')) }
-      it { @post.tags.should == 'kanagawa-ken,gifu-ken,tochigi-ken' }
+      it { @post.tags.should == 'aichi-ken' }
     end
   end
 
