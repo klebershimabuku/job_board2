@@ -22,25 +22,25 @@ describe Post do
       before { @post = Post.create!(title: 'New job', 
                                     description: 'work with us today', 
                                     location: 'Shizuoka-ken') }
-      it { @post.tags.should == ['shizuoka-ken'] }
+      it { @post.tags.should == 'shizuoka-ken' }
     end
     context "when location is 'Aichi-ken'" do 
       before { @post = Post.create!(title: 'New job', 
                                     description: 'work with us today', 
                                     location: 'Aichi-ken') }
-      it { @post.tags.should == ['aichi-ken'] }
+      it { @post.tags.should == 'aichi-ken' }
     end
     context "when location is 'Kanagawa-ken, Yokohama-shi'" do 
       before { @post = Post.create!(title: 'New job', 
                                     description: 'work with us today', 
                                     location: 'Kanagawa-ken, Yokohama-shi') }
-      it { @post.tags.should == ['kanagawa-ken'] }
+      it { @post.tags.should == 'kanagawa-ken' }
     end
     context "when location is 'Kanagawa-ken, Yokohama-shi, Gifu-ken, Tochigi-ken'" do 
       before { @post = Post.create!(title: 'New job', 
                                     description: 'work with us today', 
                                     location: 'Kanagawa-ken, Yokohama-shi, Gifu-ken, Tochigi-ken') }
-      it { @post.tags.should == ['kanagawa-ken','gifu-ken','tochigi-ken'] }
+      it { @post.tags.should == 'kanagawa-ken,gifu-ken,tochigi-ken' }
     end
   end
 
