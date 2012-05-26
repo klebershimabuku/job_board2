@@ -18,28 +18,24 @@ describe Post do
   it { should validate_presence_of :location }
 
   describe "#generate_tags" do 
+
+    before(:each) { @attributes = { title: 'New job', description: 'work with us today', location: 'Shizuoka-ken' } }
+
     context "when location is 'Shizuoka-ken'" do
-      before { @post = Post.create!(title: 'New job', 
-                                    description: 'work with us today', 
-                                    location: 'Shizuoka-ken') }
+      before { @post = Post.create!(@attributes) }
       it { @post.tags.should == ['shizuoka-ken'] }
     end
+
     context "when location is 'Aichi-ken'" do 
-      before { @post = Post.create!(title: 'New job', 
-                                    description: 'work with us today', 
-                                    location: 'Aichi-ken') }
+      before { @post = Post.create!(@attributes.merge(location: 'Aichi-ken')) }
       it { @post.tags.should == ['aichi-ken'] }
     end
     context "when location is 'Kanagawa-ken, Yokohama-shi'" do 
-      before { @post = Post.create!(title: 'New job', 
-                                    description: 'work with us today', 
-                                    location: 'Kanagawa-ken, Yokohama-shi') }
+      before { @post = Post.create!(@attributes.merge(location: 'Kanagawa-ken, Yokohama-shi')) }
       it { @post.tags.should == ['kanagawa-ken'] }
     end
     context "when location is 'Kanagawa-ken, Yokohama-shi, Gifu-ken, Tochigi-ken'" do 
-      before { @post = Post.create!(title: 'New job', 
-                                    description: 'work with us today', 
-                                    location: 'Kanagawa-ken, Yokohama-shi, Gifu-ken, Tochigi-ken') }
+      before { @post = Post.create!(@attributes.merge(location: 'Kanagawa-ken, Yokohama-shi, Gifu-ken, Tochigi-ken')) }
       it { @post.tags.should == ['kanagawa-ken','gifu-ken','tochigi-ken'] }
     end
   end
