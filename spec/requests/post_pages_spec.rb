@@ -34,7 +34,7 @@ describe "PostPages" do
           fill_in "Localização", with: "Shizuoka-ken"
         end
 
-        it "should create a new user" do
+        it "should create a new post" do
           expect { click_button :submit }.to change(Post, :count).by(1)
         end
 
@@ -50,8 +50,10 @@ describe "PostPages" do
           before { click_button :submit }
 
           it "display a nice message" do
-            should have_selector('h1', text: "Obrigado! Seu anúncio foi enviado com sucesso.")
+            should have_selector('h1', text: "Seu anúncio foi enviado com sucesso.")
           end
+
+          it { should have_link('Retornar à página inicial', href: root_path) }
         end
         
         it "should not be accessible for non-registered users" do 

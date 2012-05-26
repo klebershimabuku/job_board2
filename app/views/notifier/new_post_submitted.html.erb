@@ -1,12 +1,12 @@
 <h1>Novo anúncio cadastrado</h1>
 
-<p>Olá, o anúncio <%= @post.title %> foi cadastrado em <%= @post.created_at %>!</p>
+<p>Olá, o anúncio <b><%= @post.title %></b> foi cadastrado em <b><%= @post.created_at %></b>!</p>
 
 <p>Veja mais detalhes:</p>
 
 <ul>
-  <li>Título: <%= @post.title %></li>
-  <li>Descrição: <%= @post.description %></li>
-  <li>Localização: <%= @post.location %></li>
-  <li>Tags: <%= @post.tags %></li>
+  <li><b>Título:</b> <%= @post.title %></li>
+  <li><b>Descrição:</b> <%= @post.description %></li>
+  <li><b>Localização:</b> <%= @post.location %></li>
+  <li><b>Tags:</b> <%= @post.tags %></li>
 </ul>

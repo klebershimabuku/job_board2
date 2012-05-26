@@ -17,7 +17,7 @@ class Post < ActiveRecord::Base
     words = location.split(',')
     provinces = []
     words.each { |w| w.include?('ken') ? provinces << w.downcase.strip : next }
-    self.tags = provinces
+    self.tags = provinces.join(',')
   end
 
 end
