@@ -17,6 +17,20 @@ describe Post do
   it { should validate_presence_of :description }
   it { should validate_presence_of :location }
 
+  describe ".filter_by_tag" do 
+    before do 
+      
+      Post.delete_all
+
+      @attributes = { title: 'New job', description: 'work with us today', location: 'Shizuoka-ken, Aichi-ken', status: 'approved' }
+      Post.create!(@attributes)
+      Post.create!(@attributes.merge(status: 'pending'))
+
+      @f = Post.filter_by_tag('aichi-ken')
+    end
+    it { @f.size.should == 1 }
+  end
+
   describe "#generate_tags" do 
 
     before(:each) { @attributes = { title: 'New job', description: 'work with us today', location: 'Shizuoka-ken' } }
@@ -36,7 +50,7 @@ describe Post do
     end
     context "when location is 'Kanagawa-ken, Yokohama-shi, Gifu-ken, Tochigi-ken'" do 
       before { @post = Post.create!(@attributes.merge(location: 'Kanagawa-ken, Yokohama-shi, Gifu-ken, Tochigi-ken')) }
-      it { @post.tags.should == 'aichi-ken' }
+      it { @post.tags.should == 'kanagawa-ken,gifu-ken,tochigi-ken' }
     end
   end
 

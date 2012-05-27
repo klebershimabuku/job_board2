@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   attr_accessible :title, :description, :location, :status, :views
-  before_save :set_as_pending, :generate_tags
+  before_save :generate_tags
+  after_update :set_as_pending
 
   validates :title,       presence: true
   validates :description, presence: true
@@ -8,6 +9,11 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
 
+  scope :filter_by_tag, lambda { |tag| where("tags LIKE ? and status = ?", "%#{tag}%", "approved") }
+
+  def self.approved
+    where('status = ?', 'approved')
+  end
 
   def set_as_pending
     self.status = 'pending'

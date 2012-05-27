@@ -4,7 +4,83 @@ require 'spec_helper'
 describe "PostPages" do
   
   subject { page }
+  
   before { Post.delete_all }
+
+  describe "Index Post Page" do 
+    before do
+      3.times { FactoryGirl.create(:post, status: 'approved') }
+      visit posts_path
+    end
+    it { should have_selector('title', text: 'Empregos no Japão') }
+    it { should have_selector('h1', text: 'Descubra onde trabalhar') }
+
+    it 'lists each approved job' do 
+      Post.approved.each do |p|
+        should have_selector('li', text: p.title)
+        should have_selector('li', text: p.location)
+        should have_link(p.tags, href: tags_filter_post_path(p.tags) )
+      end
+    end
+  end
+
+  describe "Tags Post Page" do 
+    
+    context 'with data present' do 
+
+      context "when there's one tag" do 
+        before do 
+          @title = 'Resultados para Aichi-ken'
+          2.times { FactoryGirl.create(:post, tags: 'aichi-ken') }
+          visit tags_filter_post_path('aichi-ken')
+        end
+        it { should have_selector('title', text: @title) }
+        it { should have_selector('h1', text: @title) }
+        # 
+        # TODO: implement this test correctly
+        # actually its probably never been called
+        #
+        it 'lists each filtered job by tag'
+          #Post.find_all_by_tags('aichi-ken').each do |p|
+          #  should have_link(p.title)
+          #  should have_selector('li', text: p.created_at)
+          #end
+        #end
+      end
+
+      context "when there's two or more tags" do 
+        before do 
+          @title = 'Resultados para Aichi-ken'
+          2.times { FactoryGirl.create(:post, tags: 'aichi-ken,shizuoka-ken') }
+          visit tags_filter_post_path('aichi-ken')
+        end
+        it { should have_selector('title', text: @title) }
+        it { should have_selector('h1', text: @title) }
+        # 
+        # TODO: implement this test correctly
+        # actually its probably never been called
+        #
+        it 'lists each filtered job by tag'
+          #Post.find_all_by_tags('aichi-ken').each do |p|
+          #  should have_link(p.title)
+          #  should have_selector('li', text: p.created_at)
+          #end
+        #end
+      end
+    end
+
+    context 'without data present' do 
+      before do 
+        @tag = 'aichi-ken'
+        @title = 'Resultados para Aichi-ken'
+        visit tags_filter_post_path(@tag)
+      end
+      it { should have_selector('title', text: @title) }
+      it { should have_selector('h1', text: @title) }
+      it { should have_content("Nenhum resultado encontrado para #{@tag}") }
+      it { should have_link('Retornar à página principal de anúncios', href: posts_path)}
+    end
+  end
 
   describe "New Post Page" do 
     let(:counter) { Post.count }
@@ -14,7 +90,7 @@ describe "PostPages" do
       before { visit new_post_url }
       it { should have_selector('title', text: 'Entrar') }
     end
-
+    
     context 'with signed in users' do 
       before do 
         valid_signin user
@@ -87,5 +163,15 @@ describe "PostPages" do
   end
 
   describe "Show Post Page" do 
+    before do
+      @post = FactoryGirl.create(:post)
+      visit post_path(@post)
+    end
+    it { should have_selector('title', text: @post.title) }
+    it { should have_selector('h1', text: @post.title) }
+    it { should have_content(@post.description) }
+    it { should have_content(@post.location) }
+    it { should have_content(@post.tags) }
+    it { should have_link('Retornar à página principal de anúncios', href: posts_path) }
   end
 end

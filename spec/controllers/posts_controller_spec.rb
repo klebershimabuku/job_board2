@@ -11,6 +11,48 @@
       end
     end
 
+    context '#index' do 
+      before { get :index } 
+      it { assigns(:posts).should_not be_nil }
+      it { response.should be_successful }
+    end
+
+    context '#show' do 
+      before { get :show, id: FactoryGirl.create(:post) }
+      it { assigns(:post).should_not be_nil }
+      it { response.should be_successful }
+    end
+
+    describe '#tags' do 
+      context 'with data, one tag only' do
+        before do
+          @post = FactoryGirl.create(:post, tags: 'shizuoka-ken')
+          get :tags, tags: 'shizuoka-ken'
+        end
+        it { assigns(:posts).should_not be_nil }
+        it { response.should be_successful }
+      end
+      context 'with data, two tags' do
+        before do
+          FactoryGirl.create(:post, tags: 'shizuoka-ken,aichi-ken', status: 'approved')
+          FactoryGirl.create(:post, tags: 'shizuoka-ken,aichi-ken', status: 'pending')
+          FactoryGirl.create(:post, tags: 'shizuoka-ken,aichi-ken', status: 'pending')
+          get :tags, tags: 'shizuoka-ken'
+        end
+        it { assigns(:posts).should_not be_nil }
+        it { assigns(:posts).size.should == 1 }
+        it { response.should be_successful }
+      end
+      context 'with no data' do
+        before do
+          Post.delete_all
+          get :tags, tags: 'shizuoka-ken'
+        end
+        it { assigns(:posts).should be_empty }
+        it { response.should be_successful }
+      end
+    end
+
     context '#new' do 
       
       context 'when logged in users' do 
@@ -83,7 +125,7 @@
 
           it 'should not create a new post' do 
             Post.stub(:new) { mock_post(save: false) }
-            lambda do 
+            lambda do   
               post :create, post: @attributes
             end.should_not change(Post, :count)
           end

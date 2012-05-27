@@ -1,0 +1,18 @@
+<% provide(:title, @post.title) %>
+
+<h1><%= @post.title %></h1>
+
+<h4><%= @post.location %></h4>
+
+<p>
+  <%= simple_format(@post.description) %>
+</p>
+
+<p>
+  <b>TAGS:</b> <%= @post.tags %>
+</p>
+
+<p>
+  <%= link_to 'Retornar à página principal de anúncios', posts_path %>
+</p>
+

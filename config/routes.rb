@@ -12,6 +12,7 @@ JobBoard2::Application.routes.draw do
       get :successful_submitted, as: 'successful_submitted'
     end
   end
+  get 'posts/tags/:tags' => 'posts#tags', as: 'tags_filter_post'
 
   match '/seja-bem-vindo', :to => 'users#welcome', :as => 'user_registration_successfull'
   match "/ajuda", to: "static_pages#help"
