@@ -8,10 +8,15 @@ class Ability
     if user.role == 'admin'
       can :manage, :all
     elsif user.role == 'member'
-      can :read, User
-      can :manage, [User,Post] , :id => user.id
+      can :read, User # can access other users profile
+      can :manage, User , :id => user.id
+      can :tags, Post
       cannot :index, User # list users page
+    elsif user.role == 'announcer'
+      can :manage, User , :id => user.id
+      can :manage, Post , :user_id => user.id
     else
+      cannot :index, User # list users page
       can :read, :all
     end
   end

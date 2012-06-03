@@ -7,5 +7,41 @@
         <%= @user.name %>
       </h1>
     </section>
+
+<% if @user.role == 'announcer' %>
+
+    <hr />
+
+    <div class='row'>
+      <div class='span10'>
+        <h2>Meus anúncios</h2>
+      </div>
+      <div class='span2'>
+        <p><%= link_to 'Novo anúncio', new_post_path, class: 'btn btn-primary' %></p>
+      </div>
+    </div>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Título</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @posts.each do |p| %>
+        <tr>
+          <td><%= p.id %></td>
+          <td><%= link_to p.title, post_path(p) %></td>
+          <td><%= p.status %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+<% end %>
+
+
   </aside>
 </div>

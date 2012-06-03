@@ -1,0 +1,14 @@
+<% provide(:title, 'Suspensão de anúncio') %>
+<h1>Confirmação de suspensão de anúncio</h1>
+<h2>Atenção: Você está prestes a suspender o seguinte anúncio:</h2>
+<hr />
+<%= render 'single_post' %>
+<hr />
+<p>Ao clicar no botão <b>Suspender</b> este anúncio deixará de ser exibido automaticamente na relação de anúncios principal do site.</p>
+<p>Se você entendeu e realmente deseja prosseguir com esta ação, clique no botão vermelho, <b>Suspender</b>.</p>
+<p>Para cancelar esta ação e retornar à página anterior, clique no botão azul, <b>Cancelar</b>.</p>
+
+<p>
+  <%= link_to 'Cancelar', post_path(@post), class: 'btn btn-primary' %>
+  <%= link_to 'Suspender', suspend_post_path(@post), class: 'btn btn-danger' %>
+</p>

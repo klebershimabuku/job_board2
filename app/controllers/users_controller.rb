@@ -12,7 +12,9 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page])
   end
 
-  def show; end
+  def show
+    @posts = Post.where('user_id = ?', current_user)
+  end
 
   def edit; end
 

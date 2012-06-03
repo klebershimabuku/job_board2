@@ -8,6 +8,14 @@ module ControllerMacros
     end
   end
 
+  def login_announcer
+    before(:each) do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      user = FactoryGirl.create(:user, role: 'announcer')
+      sign_in user
+    end
+  end
+
   def login_custom_user
     before(:each) do
       @request.env['devise.mapping'] = Devise.mappings[:user]

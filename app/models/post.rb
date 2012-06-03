@@ -11,8 +11,20 @@ class Post < ActiveRecord::Base
 
   scope :filter_by_tag, lambda { |tag| where("tags LIKE ? and status = ?", "%#{tag}%", "approved") }
 
+  def to_param
+    "#{id}-#{title.downcase.parameterize}"
+  end
+
   def self.approved
     where('status = ?', 'approved')
+  end
+
+  def suspended?
+    status == 'suspended'
+  end
+
+  def suspend!
+    update_column(:status, 'suspended')
   end
 
   def set_as_pending

@@ -1,0 +1,16 @@
+<p><%= link_to 'Ver todos os anúncios', posts_path %></p>
+
+<div class='post'>
+
+  <p><%= @post.location %></p>
+  <h1><%= @post.title %></h1>
+
+  <p>
+    <%= simple_format(@post.description) %>
+  </p>
+
+  <p>
+    <b>TAGS:</b> <%= @post.tags %>
+  </p>
+
+</div>

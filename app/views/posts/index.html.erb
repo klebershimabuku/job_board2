@@ -1,14 +1,14 @@
 <% provide(:title, 'Empregos no Japão') %>
-<h1>Descubra onde trabalhar</h1>
-
-<ul>
-<% @posts.each do |post| %>
-  <li><%= link_to post.title, post_path(post) %></li>
-  <li><%= post.location %></li>
-  <li>Tags: 
-    <% post.tags.split(',').each do |tag| %>
-      <%= link_to tag, tags_filter_post_path(tag) %>
-    <% end %>
+  <ul id='posts'>
+  <% @posts.each do |post| %>
+  <li>
+    <h2><%= link_to post.title, post_path(post) %></h2>
+    <p class='location'><%= post.location %></p>
+    <p class='tags'>Tags: 
+      <% post.tags.split(',').each do |tag| %>
+        <%= link_to tag, tags_filter_post_path(tag) %>
+      <% end %>
+    </p>
   </li>
-<% end %>
-</ul>
+  <% end %>
+  </ul>

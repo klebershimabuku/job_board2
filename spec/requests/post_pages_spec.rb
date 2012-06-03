@@ -13,12 +13,11 @@ describe "PostPages" do
       visit posts_path
     end
     it { should have_selector('title', text: 'Empregos no Japão') }
-    it { should have_selector('h1', text: 'Descubra onde trabalhar') }
 
     it 'lists each approved job' do 
       Post.approved.each do |p|
-        should have_selector('li', text: p.title)
-        should have_selector('li', text: p.location)
+        should have_selector('h2', text: p.title)
+        should have_selector('p', text: p.location)
         should have_link(p.tags, href: tags_filter_post_path(p.tags) )
       end
     end
@@ -84,7 +83,7 @@ describe "PostPages" do
 
   describe "New Post Page" do 
     let(:counter) { Post.count }
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { FactoryGirl.create(:user, role: 'announcer') }
 
     context 'with non signed-in users' do 
       before { visit new_post_url }
@@ -160,18 +159,138 @@ describe "PostPages" do
   end
 
   describe "Edit Post Page" do 
+    before do 
+      @user = FactoryGirl.create(:user, role: 'announcer')
+      @post = FactoryGirl.create(:post, user_id: @user.id)
+      visit edit_post_path(@post)
+    end
+
+    context 'when logged-in with the wrong user' do 
+      before do
+        valid_signin FactoryGirl.create(:user, email: 'wronguser@example.com')
+        get edit_post_path(@post)
+      end
+      it { response.should redirect_to root_path }
+    end
+
+
+    context 'when logged-in with the right user' do 
+      before do
+        valid_signin @user
+        visit edit_post_path(@post)
+      end
+      it { should have_selector('title', text: 'Edição de anúncio') }
+      it { should have_selector('h1', text: 'Edição de anúncio') }
+
+      context 'on save' do
+        let(:new_title) { 'This is a new title' }
+        let(:new_description) { 'and sure, this is a new description' }
+        let(:new_location) { 'Kanagawa-ken, Yokohama-shi' }
+
+        context 'with valid information' do 
+          
+          before do
+            fill_in "Título",       with: new_title
+            fill_in "Descrição",    with: new_description
+            fill_in "Localização",  with: new_location
+            click_button 'Salvar'
+          end
+
+          it { should have_success_message('Anúncio modificado com sucesso.') }
+          it { should have_selector('title',text: new_title)}
+        end
+  
+        context 'with invalid information' do 
+          before do
+            fill_in "Título",       with: new_title
+            fill_in "Descrição",    with: ''
+            fill_in "Localização",  with: new_location
+            click_button 'Salvar'
+          end
+          it { should have_content('Os seguintes erros foram encontrados') }
+        end
+      end
+    end
+
+    context 'when not logged-in' do 
+
+      before { get edit_post_path(@post) }
+
+      it { response.should redirect_to root_path }
+      it { should have_selector('title', text: 'ShigotoDoko') }
+    end
   end
 
   describe "Show Post Page" do 
+
     before do
-      @post = FactoryGirl.create(:post)
+      @user = FactoryGirl.create(:user, role: 'announcer')
+      @post = @user.posts.build(title: 'Awesome job!',
+                                description: 'Work with us today',
+                                location: 'Aichi-ken, Toyohashi-shi')
+      @post.save
       visit post_path(@post)
     end
+
     it { should have_selector('title', text: @post.title) }
     it { should have_selector('h1', text: @post.title) }
     it { should have_content(@post.description) }
     it { should have_content(@post.location) }
     it { should have_content(@post.tags) }
-    it { should have_link('Retornar à página principal de anúncios', href: posts_path) }
+
+    context 'when visiting as guest' do 
+      before { visit post_path(@post) }
+      it { should_not have_link('Editar anúncio', href: edit_post_path(@post)) }
+      it { should have_link('Retornar à página principal de anúncios', href: posts_path) }
+    end
+
+    context 'when visiting a suspended post as author' do 
+      before do 
+        valid_signin @user
+        @post.suspend!
+        visit post_path(@post)
+      end
+      it { should_not have_link('Editar anúncio', href: edit_post_path(@post)) }
+      it { should_not have_link('Suspender anúncio', href: suspend_alert_post_path(@post)) }
+      it { should have_content('Este anúncio está suspenso e não pode ser editado.') }
+      it { should have_link('Retornar à página principal de anúncios', href: posts_path) }
+    end
+
+    context 'when visiting a not-suspended post as author' do 
+      before do 
+        valid_signin @user
+        visit post_path(@post)
+      end
+      it { should have_link('Editar anúncio', href: edit_post_path(@post)) }
+      it { should have_link('Suspender anúncio', href: suspend_alert_post_path(@post)) }
+      it { should have_link('Retornar à página principal de anúncios', href: posts_path) }
+    end
+
+  end
+
+  describe "Suspend Post Page" do 
+    before do
+      @user = FactoryGirl.create(:user, role: 'announcer')
+      @post = @user.posts.build(title: 'Awesome job!',
+                                description: 'Work with us today',
+                                location: 'Aichi-ken, Toyohashi-shi')
+      @post.save
+      visit suspend_alert_post_path(@post)
+    end
+
+    context 'when visiting as guest' do 
+      it { should_not have_link('Suspender', href: suspend_post_path(@post)) }
+      it { should have_selector('title', text: 'ShigotoDoko') } # redirect_to root_path
+    end
+
+    context 'when visiting as author' do 
+      before do
+        valid_signin @user
+        visit suspend_alert_post_path(@post)
+      end
+      it { should have_link('Suspender', href: suspend_post_path(@post)) }
+      it { should have_selector('title', text: 'Suspensão de anúncio') }
+      it { should have_selector('h1', text: @post.title) }
+    end
   end
 end

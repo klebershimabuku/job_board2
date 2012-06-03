@@ -165,29 +165,74 @@ describe "UserPages" do
   end
 
   describe "index action" do
-    before do
-      valid_signin FactoryGirl.create(:admin)
-      FactoryGirl.create(:user, name: "Bob", email: "bob@example.com")
-      FactoryGirl.create(:user, name: "Alex", email: "alex@example.com")
-      visit users_path
-    end
 
-    it { should have_selector('h1', text: "Todos usuários") }
-    it "list each user" do
-      User.all.each do |u|
-        page.should have_selector('li', text: u.name)
+    context 'when admin' do 
+      before do
+        valid_signin FactoryGirl.create(:admin)
+        FactoryGirl.create(:user, name: "Bob", email: "bob@example.com")
+        FactoryGirl.create(:user, name: "Alex", email: "alex@example.com")
+        visit users_path
+      end
+
+      it { should have_selector('h1', text: "Todos usuários") }
+      it "list each user" do
+        User.all.each do |u|
+          page.should have_selector('li', text: u.name)
+        end
       end
     end
+
+    pending 'when member'
   end
 
   describe "show action (profile)" do
-    let(:user) { FactoryGirl.create(:user) }
-    before do
-      valid_signin user
-      visit user_path(user)
+
+    #
+    # Announcer users should only be allowed to create Posts
+    #
+    context 'when user is a announcer' do 
+      let(:user) { FactoryGirl.create(:user, role: 'announcer') }
+      before do
+        2.times { FactoryGirl.create(:post, status: 'approved', user_id: user.id) }
+        1.times { FactoryGirl.create(:post, status: 'pending', user_id: user.id) }
+        3.times { FactoryGirl.create(:post, status: 'suspended', user_id: user.id) }
+        valid_signin user
+        visit user_path(user)
+      end
+  
+      it { should have_selector('h1', text: user.name) }
+      it { should have_selector('title', text: user.name) }
+
+      it { should have_selector('h2', text: 'Meus anúncios') }
+      it { should have_link('Novo anúncio', href: new_post_path) }
+
+      it "list all posts by the current user" do 
+        all_posts = Post.where('user_id = ?', user)
+        all_posts.all.each do |p|
+          page.should have_selector('td', text: p.title)
+          page.should have_link(p.title, href: post_path(p))
+          page.should have_content(p.status)
+        end
+      end
     end
-    it { should have_selector('h1', text: user.name) }
-    it { should have_selector('title', text: user.name) }
+
+    # 
+    # Member users should only be allowed to create Curriculums
+    #
+    context 'when user is a member' do 
+      let(:user) { FactoryGirl.create(:user, role: 'member') }
+      before do
+        2.times { FactoryGirl.create(:post, status: 'approved', user_id: user.id) }
+        1.times { FactoryGirl.create(:post, status: 'pending', user_id: user.id) }
+        3.times { FactoryGirl.create(:post, status: 'suspended', user_id: user.id) }
+        valid_signin user
+        visit user_path(user)
+      end
+      it { should have_selector('h1', text: user.name) }
+      it { should have_selector('title', text: user.name) }
+      it { should_not have_selector('h2', text: 'Meus anúncios') }
+    end
+
     it { should_not have_link('Entrar') }
   end
 

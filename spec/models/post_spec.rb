@@ -59,4 +59,33 @@ describe Post do
     it { post.status.should be_eql 'pending' }
   end
 
+  describe '#suspend!' do 
+    let(:post) { FactoryGirl.create(:post) }
+    before { post.suspend! }
+    it { post.status.should be_eql 'suspended' }
+    it { post.status.should_not be_eql 'pending' }
+  end
+
+  describe '#suspended?' do 
+    let(:post) { FactoryGirl.create(:post) }
+
+    context 'should be false' do 
+      before { post.suspended? }
+      it { post.suspended?.should be_false }
+    end
+
+    context 'should be true' do 
+      before { post.suspend! }
+      it { post.suspended?.should be_true }
+    end
+  end
+
+  describe '.approved' do 
+    let(:p1) { FactoryGirl.create(:post, status: 'approved') }
+    let(:p2) { FactoryGirl.create(:post, status: 'approved') }
+    let(:p3) { FactoryGirl.create(:post, status: 'pending') }
+    let(:p4) { FactoryGirl.create(:post, status: 'approved') }
+    it { Post.approved.should_not include(p3) }
+    it { Post.approved.should include(p1,p2,p4) }
+  end
 end

@@ -11,6 +11,10 @@ JobBoard2::Application.routes.draw do
     collection do
       get :successful_submitted, as: 'successful_submitted'
     end
+    member do 
+      get :suspend_alert, as: 'suspend_alert'
+      post :suspend, as: 'suspend'
+    end
   end
   get 'posts/tags/:tags' => 'posts#tags', as: 'tags_filter_post'
 

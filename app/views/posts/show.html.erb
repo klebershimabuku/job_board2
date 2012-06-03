@@ -1,16 +1,21 @@
 <% provide(:title, @post.title) %>
 
-<h1><%= @post.title %></h1>
+<%= render 'single_post' %>
 
-<h4><%= @post.location %></h4>
+<% if @post.suspended? %>
+  <p><b>Este anúncio está suspenso e não pode ser editado.</b></p>
+<% else %>
+  <p>
+  <% if can? :edit, @post %>
+    <%= link_to 'Editar anúncio', edit_post_path(@post), class: 'btn btn-primary btn-small' %>
+  <% end %>
 
-<p>
-  <%= simple_format(@post.description) %>
-</p>
+  <% if can? :suspend, @post %>
+    <%= link_to 'Suspender anúncio', suspend_alert_post_path(@post), class: 'btn btn-danger btn-small' %>
+  <% end %>
+  <p>
+<% end %>
 
-<p>
-  <b>TAGS:</b> <%= @post.tags %>
-</p>
 
 <p>
   <%= link_to 'Retornar à página principal de anúncios', posts_path %>
