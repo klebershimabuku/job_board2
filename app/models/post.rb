@@ -1,7 +1,7 @@
 class Post < ActiveRecord::Base
   attr_accessible :title, :description, :location, :status, :views
   before_save :generate_tags
-  after_update :set_as_pending
+  after_update :set_as_pending, :generate_tags
 
   validates :title,       presence: true
   validates :description, presence: true
@@ -9,14 +9,22 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
 
-  scope :filter_by_tag, lambda { |tag| where("tags LIKE ? and status = ?", "%#{tag}%", "approved") }
+  scope :approved_filter_by_tag, lambda { |tag| where("tags LIKE ? and status = ?", "%#{tag}%", "approved") }
+
+  def self.available_tags
+    provinces = []
+
+    approved.select { |post| provinces << post.tags.split(',') }
+
+    available_tags = provinces.flatten.uniq.sort!
+  end
 
   def to_param
     "#{id}-#{title.downcase.parameterize}"
   end
 
   def self.approved
-    where('status = ?', 'approved')
+    where('status = ?', 'approved').order('created_at DESC')
   end
 
   def suspended?
@@ -32,10 +40,9 @@ class Post < ActiveRecord::Base
   end
 
   def generate_tags
-    words = location.split(',')
-    provinces = []
-    words.each { |w| w.include?('ken') ? provinces << w.downcase.strip : next }
-    self.tags = provinces.join(',')
+    pattern = /(\w+-ken)/
+    results = location.scan(pattern)
+    self.tags = results.each { |x| x.to_s }.join(',').downcase
   end
 
 end

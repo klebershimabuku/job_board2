@@ -17,7 +17,7 @@ describe Post do
   it { should validate_presence_of :description }
   it { should validate_presence_of :location }
 
-  describe ".filter_by_tag" do 
+  describe ".approved_filter_by_tag" do 
     before do 
       
       Post.delete_all
@@ -26,7 +26,7 @@ describe Post do
       Post.create!(@attributes)
       Post.create!(@attributes.merge(status: 'pending'))
 
-      @f = Post.filter_by_tag('aichi-ken')
+      @f = Post.approved_filter_by_tag('aichi-ken')
     end
     it { @f.size.should == 1 }
   end

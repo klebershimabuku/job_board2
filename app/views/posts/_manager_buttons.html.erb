@@ -1,0 +1,13 @@
+  <% if @post.suspended? %>
+    <p><b>Este anúncio está suspenso e não pode ser editado.</b></p>
+  <% else %>
+    <p>
+    <% if can? :edit, @post %>
+      <%= link_to 'Editar anúncio', edit_post_path(@post), class: 'btn btn-primary btn-small' %>
+    <% end %>
+
+    <% if can? :suspend, @post %>
+      <%= link_to 'Suspender anúncio', suspend_alert_post_path(@post), class: 'btn btn-danger btn-small' %>
+    <% end %>
+    <p>
+  <% end %>

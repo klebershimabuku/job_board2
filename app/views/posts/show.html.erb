@@ -1,23 +1,30 @@
 <% provide(:title, @post.title) %>
+<div class='row'>
+  <div class='post'>
+    <div class='span12'>
+      <p><%= @post.location %></p>
+      <h1><%= @post.title %></h1>
 
-<%= render 'single_post' %>
+      <div class='row'>
 
-<% if @post.suspended? %>
-  <p><b>Este anúncio está suspenso e não pode ser editado.</b></p>
-<% else %>
-  <p>
-  <% if can? :edit, @post %>
-    <%= link_to 'Editar anúncio', edit_post_path(@post), class: 'btn btn-primary btn-small' %>
-  <% end %>
+        <div class='span9'>
+          <%= simple_format(@post.description) %>
+          <%= render 'manager_buttons', collection: @post %>
+          <p><%= link_to 'Retornar à página principal de anúncios', posts_path %></p>
+        </div>
 
-  <% if can? :suspend, @post %>
-    <%= link_to 'Suspender anúncio', suspend_alert_post_path(@post), class: 'btn btn-danger btn-small' %>
-  <% end %>
-  <p>
-<% end %>
-
-
-<p>
-  <%= link_to 'Retornar à página principal de anúncios', posts_path %>
-</p>
-
+        <!-- sidebar -->
+        <div class='span3'>
+          <h4>TAGS</h4>
+          <ul class='taglist-vertical'>
+            <% @post.tags.split(',').flatten.sort.each do |tag| %>
+            <li><%= link_to tag, tags_filter_post_path(tag) %></li>
+            <% end %>
+          </ul>
+          <span class='created_at'>criado <%= timeago_tag @post.created_at, nojs: true, limite: 10.days.ago %></span>
+        </div>
+        <!-- end sidebar -->
+      </div>
+    </div>
+  </div>
+</div>

@@ -9,10 +9,13 @@ describe "PostPages" do
 
   describe "Index Post Page" do 
     before do
-      3.times { FactoryGirl.create(:post, status: 'approved') }
+      FactoryGirl.create(:post, status: 'approved', tags: 'aichi-ken')
+      FactoryGirl.create(:post, status: 'approved', tags: 'gifu-ken')
+      FactoryGirl.create(:post, status: 'approved', tags: 'tochigi-ken,gunma-ken')
       visit posts_path
     end
     it { should have_selector('title', text: 'Empregos no Japão') }
+    it { should have_selector('h4', text: 'Filtre anúncios por região') }
 
     it 'lists each approved job' do 
       Post.approved.each do |p|
@@ -21,6 +24,13 @@ describe "PostPages" do
         should have_link(p.tags, href: tags_filter_post_path(p.tags) )
       end
     end
+
+    it 'lists each tag' do 
+      Post.available_tags.each do |tag|
+        should have_selector('li', text: tag)
+      end
+    end
+
   end
 
   describe "Tags Post Page" do 
@@ -29,49 +39,58 @@ describe "PostPages" do
 
       context "when there's one tag" do 
         before do 
-          @title = 'Resultados para Aichi-ken'
-          2.times { FactoryGirl.create(:post, tags: 'aichi-ken') }
+          @title = 'Vagas em Aichi-ken'
+          Post.create!(title: 'Job in Aichi', 
+                       description: 'anytext', 
+                       status: 'approved',
+                       location: 'aichi-ken')
+
+
           visit tags_filter_post_path('aichi-ken')
         end
         it { should have_selector('title', text: @title) }
         it { should have_selector('h1', text: @title) }
-        # 
-        # TODO: implement this test correctly
-        # actually its probably never been called
-        #
-        it 'lists each filtered job by tag'
-          #Post.find_all_by_tags('aichi-ken').each do |p|
-          #  should have_link(p.title)
-          #  should have_selector('li', text: p.created_at)
-          #end
-        #end
+
+        it 'lists each filtered job by tag' do
+          Post.approved_filter_by_tag('aichi-ken').each do |p|
+            page.should have_selector('li', text: p.title)
+          end
+        end
       end
 
       context "when there's two or more tags" do 
         before do 
-          @title = 'Resultados para Aichi-ken'
-          2.times { FactoryGirl.create(:post, tags: 'aichi-ken,shizuoka-ken') }
-          visit tags_filter_post_path('aichi-ken')
+          @filter = 'aichi-ken'
+
+          @title = 'Vagas em Aichi-ken'
+
+          Post.create!(title: 'Job in Aichi', 
+                       description: 'anytext', 
+                       status: 'approved',
+                       location: 'aichi-ken,shizuoka-ken')
+
+          Post.create!(title: 'Job in Yokohama-shi', 
+                       description: 'anytext',
+                       status: 'approved',
+                       location: 'gunma-ken,osaka-fu,aichi-ken')
+
+          visit tags_filter_post_path(@filter)
         end
         it { should have_selector('title', text: @title) }
         it { should have_selector('h1', text: @title) }
-        # 
-        # TODO: implement this test correctly
-        # actually its probably never been called
-        #
-        it 'lists each filtered job by tag'
-          #Post.find_all_by_tags('aichi-ken').each do |p|
-          #  should have_link(p.title)
-          #  should have_selector('li', text: p.created_at)
-          #end
-        #end
+
+        it 'lists each filtered job by tag' do
+          Post.approved_filter_by_tag('aichi-ken').each do |p|
+            page.should have_selector('li', text: p.title)
+          end
+        end
       end
     end
 
     context 'without data present' do 
       before do 
         @tag = 'aichi-ken'
-        @title = 'Resultados para Aichi-ken'
+        @title = 'Vagas em Aichi-ken'
         visit tags_filter_post_path(@tag)
       end
       it { should have_selector('title', text: @title) }
@@ -236,7 +255,13 @@ describe "PostPages" do
     it { should have_selector('h1', text: @post.title) }
     it { should have_content(@post.description) }
     it { should have_content(@post.location) }
-    it { should have_content(@post.tags) }
+    it { should have_content('criado') }
+
+    it 'should have all the tags' do
+      @post.tags.split(',').each do |tag|
+        should have_link(tag, href: tags_filter_post_path(tag))
+      end
+    end
 
     context 'when visiting as guest' do 
       before { visit post_path(@post) }

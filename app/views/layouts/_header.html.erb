@@ -4,6 +4,14 @@
       <%= link_to "shigotodoko", posts_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
+          <% if current_user && current_user.role == 'announcer' %>
+          <li>
+            <a href='/posts/new'>
+              <i class='icon-file'></i>
+              Novo anúncio
+            </a>
+          </li>
+          <% end %>
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Ajuda", ajuda_path %></li>
           <% if user_signed_in? %>

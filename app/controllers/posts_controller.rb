@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   end
 
   def tags
-    @posts = Post.filter_by_tag(params[:tags])
+    @posts = Post.approved_filter_by_tag(params[:tags])
   end
 
   def successful_submitted; end

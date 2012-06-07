@@ -6,6 +6,7 @@
         <%= gravatar_for @user, size: "100x40" %>
         <%= @user.name %>
       </h1>
+      <p>Membro desde: <%= @user.created_at.strftime('%d/%m/%Y') %></p>
     </section>
 
 <% if @user.role == 'announcer' %>

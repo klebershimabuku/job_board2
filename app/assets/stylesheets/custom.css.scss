@@ -1,7 +1,9 @@
-@import "bootstrap";
+@import 'bootstrap';
+@import 'font-awesome';
 
 /* variables */
 $grayMediumLight: #eaeaea;
+$mediumSize: 17px;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -104,6 +106,15 @@ aside {
   }
 }
 
+.taglist-vertical {
+  margin-top: 15px;
+  margin-left: 15px;
+  li {
+    padding-top: 5px;
+    font-size: $mediumSize;
+  }
+}
+
 .gravatar {
   float: left;
   margin-right: 10px;
@@ -148,17 +159,19 @@ aside {
       font-size: 15px;
       margin-bottom: 0px;
     }
+    p.created_at {
+      font-size: 11px;
+    }
   }
 }
 
 /* single post */
 .post {
-  border-top: 3px solid #DDD;
-  padding-top: 20px;
+  padding-top: 0px;
   h1 {
     text-align: left;
     padding-bottom: 20px;
-    border-bottom: 1px solid #EEE;
+    border-bottom: 1px solid #333;
   }
 }
 
