@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 gem 'jquery-rails'
-gem 'bootstrap-sass', '2.0.0'
+gem 'bootstrap-sass'
 gem 'devise', '2.0.4'
 gem 'cancan', '1.6.7'
 gem 'faker', '1.0.1'
@@ -10,6 +10,7 @@ gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.5'
 gem 'thin'
 gem 'rails-timeago'
+gem 'simple_form'
 
 group :developement, :test do 
   gem 'mysql2'

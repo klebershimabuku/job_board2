@@ -1,30 +1,23 @@
 <% provide(:title, "Novo anúncio") %>
 
-<% if @post.errors.any? %>
-  <h3>Os seguintes erros foram encontrados:</h3>
-  <ul>
-    <% @post.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
+<div class='row'>
+
+  <div class='span12'>
+    <h1>Novo anúncio</h1>
+
+    <%= simple_form_for(@post, :html => {:class => 'form-horizontal' }) do |f| %>
+        <%= f.input :title, label: "Título", hint: 'Evite usar termos como: URGENTE' %>
+
+        <%= f.input :description, label: "Descrição", 
+                                  hint: 'Descreva o anúncio com o maior número de informações possível', 
+                                  as: 'text' %>
+
+        <%= f.input :location,  label: "Localização", 
+                                hint: 'ex: Aichi-ken / Toyohashi-shi', 
+                                placeholder: 'Província / Cidade' %>
+
+        <%= f.button :submit, label: "Enviar", class: 'btn btn-large btn-primary' %>
     <% end %>
-  </ul>
-<% end %>
+  </div>
+</div>
 
-<h1>Novo anúncio</h1>
-
-<%= form_for(@post) do |f| %>
-  <p>
-    <%= f.label :title, "Título" %>
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :description, "Descrição" %>
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :location, "Localização" %>
-    <%= f.text_field :location %>
-  </p>
-  <p>
-    <%= f.submit "Enviar", class: 'btn btn-large btn-primary' %>
-  </p>
-<% end %>
