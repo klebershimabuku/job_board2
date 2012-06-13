@@ -36,7 +36,7 @@ class Post < ActiveRecord::Base
   end
 
   def set_as_pending
-    self.status = 'pending'
+    update_column(:status, 'pending')
   end
 
   def generate_tags
@@ -46,3 +46,19 @@ class Post < ActiveRecord::Base
   end
 
 end
+# == Schema Information
+#
+# Table name: posts
+#
+#  id          :integer(4)      not null, primary key
+#  title       :string(255)
+#  description :text
+#  location    :string(255)
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
+#  status      :string(255)     default("pending")
+#  tags        :string(255)
+#  views       :integer(4)
+#  user_id     :integer(4)
+#
+

@@ -99,7 +99,15 @@
     context '#new' do 
       
       context 'when logged in users' do 
-        login_announcer
+
+        before do
+          @request.env["devise.mapping"] = Devise.mappings[:user]
+          user = FactoryGirl.create(:user, role: 'announcer')
+          sign_in user
+          @ci = ContactInfo.new(title: 'title goes here', description: 'text')
+          @ci.user_id = user.id
+          @ci.save!
+        end
 
         it 'should be_successful' do 
           @post = mock(Post)

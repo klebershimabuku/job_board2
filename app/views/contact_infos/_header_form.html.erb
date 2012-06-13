@@ -1,0 +1,21 @@
+<div class='row'>
+  <div class='page-header'>
+    <h1><%= @title %></h1>
+    <h2>A informação para contato será utilizada para automatizar o processo de
+      inserção de dados referentes à empresa anunciante em todos os anúncios.</h2>
+    <p>Dentre as informações para contato geralmente constam: <b>Nome da empresa, telefones</b> e <b>endereços de e-mail</b> para contato, bem como <b>localização da empresa, site, twitter</b>, entre outras informações.</p>
+  </div>
+  
+  <div class='span9'>
+  <%= simple_form_for([current_user,@contact_info], :html => {:class => 'form-horizontal' }) do |f| %>
+    <%= f.input :title, label: 'Nome da empresa' %>
+    <%= f.input :description, 
+                label: 'Informações para contato', 
+                as: 'text',
+                hint: 'Neste espaço poderão ser informados: telefones, e-mails, endereços (escritório e tantoushas), twitter e skype.',
+                input_html: { cols: '60', rows: '8' } %>
+    <%= f.button :submit, @contact_info.new_record? ? 'Criar informações para contato' : 'Salvar modificações', class: 'btn btn-primary' %> ou <%= link_to 'cancelar', user_path(current_user) %>
+  <% end %>
+</div>
+
+</div>

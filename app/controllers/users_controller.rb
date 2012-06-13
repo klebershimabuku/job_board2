@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @posts = Post.where('user_id = ?', current_user)
+    @user = User.find(params[:id], :include => [:contact_info, :posts])
   end
 
   def edit; end

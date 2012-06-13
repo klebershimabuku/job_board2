@@ -89,3 +89,19 @@ describe Post do
     it { Post.approved.should include(p1,p2,p4) }
   end
 end
+# == Schema Information
+#
+# Table name: posts
+#
+#  id          :integer(4)      not null, primary key
+#  title       :string(255)
+#  description :text
+#  location    :string(255)
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
+#  status      :string(255)     default("pending")
+#  tags        :string(255)
+#  views       :integer(4)
+#  user_id     :integer(4)
+#
+

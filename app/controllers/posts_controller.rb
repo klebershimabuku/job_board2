@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   load_and_authorize_resource except: [:index, :show, :new, :create]
   before_filter :authenticate_user!, except: [:index, :show, :tags]
   before_filter :find_post, only: [:show, :edit, :update, :suspend, :suspend_alert]
+  before_filter :check_for_contact_information, only: 'new'
 
   def index
     @posts = Post.approved
@@ -50,5 +51,12 @@ class PostsController < ApplicationController
   protected
   def find_post
     @post = Post.find(params[:id])
+  end
+
+  def check_for_contact_information
+    if current_user.contact_info.nil?
+      flash[:error] = "Informações para contato não encontradas."
+      redirect_to user_path(current_user)
+    end
   end
 end

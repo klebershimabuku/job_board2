@@ -1,29 +1,3 @@
-<% provide(:title, 'Edição de anúncio') %>
-<h1>Edição de anúncio</h1>
-
-<% if @post.errors.any? %>
-  <h3>Os seguintes erros foram encontrados:</h3>
-  <ul>
-    <% @post.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<%= form_for(@post) do |f| %>
-  <p>
-    <%= f.label :title, "Título" %>
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :description, "Descrição" %>
-    <%= f.text_area :description %>
-  </p>
-  <p>
-    <%= f.label :location, "Localização" %>
-    <%= f.text_field :location %>
-  </p>
-  <p>
-    <%= f.submit "Salvar", class: 'btn btn-large btn-primary' %>
-  </p>
-<% end %>
+<% @title = 'Edição de anúncio' %>
+<% provide(:title, @title) %>
+<%= render 'form' %>

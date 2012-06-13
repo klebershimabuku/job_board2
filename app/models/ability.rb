@@ -15,6 +15,7 @@ class Ability
     elsif user.role == 'announcer'
       can :manage, User , :id => user.id
       can :manage, Post , :user_id => user.id
+      can :manage, ContactInfo, :user_id => user.id
     else
       cannot :index, User # list users page
       can :read, :all

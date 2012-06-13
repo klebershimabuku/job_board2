@@ -20,4 +20,10 @@ FactoryGirl.define do
     tags 'shizuoka-ken'
     association :user
   end
+
+  factory :contact_info do 
+    title "Company Name"
+    description "Address here, phone numbers and email addres"
+    association :user
+  end
 end

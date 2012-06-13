@@ -10,7 +10,7 @@
         <div class='row-fluid'>
 
           <div class='span9 offset0'>
-            <h2><%= link_to post.title, post_path(post) %></h2>
+            <h3><%= link_to post.title, post_path(post) %></h3>
             <p class='location'><%= post.location %></p>
             <p class='tags'>Tags: 
               <%= link_tags(post.tags) %>
@@ -19,6 +19,7 @@
 
           <div class='span3 offset10'>
             <p class='created_at'><%= timeago_tag post.created_at %></p>
+            <p><span class='company_name label label-company-name'><%= post.user.contact_info.title %></span></p>
           </div>
 
         </div>
@@ -39,6 +40,8 @@
       <li><%= link_to tag, tags_filter_post_path(tag) %></li>
     <% end %>
     </ul>
+    <hr />
+    <h5><%= link_to 'Siga o shigotodoko no Twitter', 'http://twitter.com/shigotodoko' %></h5>
 
   </div>
 

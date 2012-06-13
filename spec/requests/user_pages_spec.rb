@@ -214,6 +214,43 @@ describe "UserPages" do
           page.should have_content(p.status)
         end
       end
+
+      describe 'contact information' do
+
+        describe 'when information does not exist' do 
+
+          context 'and try to create a new post' do 
+            before do 
+              click_link 'Novo anúncio'
+            end
+            it { should have_error_message('Informações para contato não encontradas.') }
+            it 'should not redirect to the new post page' do 
+              should have_selector('h1', text: user.name)
+            end
+          end
+
+          it { should have_content('Você ainda não adicionou as informações para contato.') }
+          it { should have_link('Adicionar informações para contato', href: new_user_contact_info_path(user)) }
+        end
+
+        context 'when information are present' do 
+          before do 
+            @info = user.build_contact_info(title: 'Padrão', 
+                                   description: 'Watanabe 090-7356-9944 / Ricardo 090-7744-4974')
+            @info.save!
+            visit user_path(user)
+          end
+          it { should have_selector('h3', text: @info.title) }
+          it { should have_selector('p', text: @info.description) }
+          it { should have_link('Editar', href: edit_user_contact_info_path(user, @info.id)) }
+          it { should have_link('Remover') }
+
+          context "and user click on link 'Editar'" do 
+            before { click_link 'Editar' }
+            it { should have_selector('title', text: 'Alteração de informações para contato') }
+          end
+        end
+      end
     end
 
     # 

@@ -494,9 +494,9 @@ aside {
     &:last-child {
       border-bottom: 0;
     }
-    h2 {
-      text-align: left;
-      margin-bottom: 0px;
+    span.company_name {
+      font-size: 12px;
+      font-weight: normal;
     }
     p.description {
       font-size: 15px;
@@ -509,6 +509,15 @@ aside {
       font-size: 11px;
     }
   }
+}
+
+.label-company_name,
+.badge-company_name {
+  background-color: #EEE;
+}
+.label-company_name[href],
+.badge-company_name[href] {
+  background-color: #EEE;
 }
 
 /* single post */
@@ -535,7 +544,7 @@ aside {
 }
 
 div.boolean, .simple_form input[type='submit'] {
-  margin-left: 120px;
+  margin-left: 160px;
 }
 
 div.boolean label, label.collection_radio_buttons {
@@ -613,8 +622,9 @@ input, textarea, select, .uneditable-input {
 /* footer */
 
 footer {
-  margin-top: 45px;
+  margin-top: 25px;
   padding-top: 5px;
+  margin-bottom: 100px;
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
   a {

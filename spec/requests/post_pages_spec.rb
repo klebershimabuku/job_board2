@@ -9,9 +9,13 @@ describe "PostPages" do
 
   describe "Index Post Page" do 
     before do
-      FactoryGirl.create(:post, status: 'approved', tags: 'aichi-ken')
-      FactoryGirl.create(:post, status: 'approved', tags: 'gifu-ken')
-      FactoryGirl.create(:post, status: 'approved', tags: 'tochigi-ken,gunma-ken')
+      user = FactoryGirl.create(:user)
+      contact_info = FactoryGirl.create(:contact_info, user_id: user.id)
+      
+      FactoryGirl.create(:post, status: 'approved', tags: 'aichi-ken', user_id: user.id)
+      FactoryGirl.create(:post, status: 'approved', tags: 'gifu-ken', user_id: user.id)
+      FactoryGirl.create(:post, status: 'approved', tags: 'tochigi-ken,gunma-ken', user_id: user.id)
+
       visit posts_path
     end
     it { should have_selector('title', text: 'Empregos no Japão') }
@@ -19,7 +23,7 @@ describe "PostPages" do
 
     it 'lists each approved job' do 
       Post.approved.each do |p|
-        should have_selector('h2', text: p.title)
+        should have_selector('h3', text: p.title)
         should have_selector('p', text: p.location)
         should have_link(p.tags, href: tags_filter_post_path(p.tags) )
       end
@@ -112,11 +116,10 @@ describe "PostPages" do
     context 'with signed in users' do 
       before do 
         valid_signin user
+        contact_info = FactoryGirl.create(:contact_info, user_id: user.id)
         visit new_post_path
       end
       it { should have_selector('h1', text: 'Novo anúncio') }
-      it "should have content 'Nome da empresa' "
-      it "should have content 'Dados da empresa' "
 
       # 
       # with valid information
@@ -244,6 +247,7 @@ describe "PostPages" do
 
     before do
       @user = FactoryGirl.create(:user, role: 'announcer')
+      @contact_info = FactoryGirl.create(:contact_info, user_id: @user.id)
       @post = @user.posts.build(title: 'Awesome job!',
                                 description: 'Work with us today',
                                 location: 'Aichi-ken, Toyohashi-shi')
@@ -256,6 +260,12 @@ describe "PostPages" do
     it { should have_content(@post.description) }
     it { should have_content(@post.location) }
     it { should have_content('criado') }
+    it "should have content 'Nome da empresa' " do 
+      should have_content(@contact_info.title)
+    end
+    it "should have content 'Dados da empresa' " do 
+      should have_content(@contact_info.description)
+    end
 
     it 'should have all the tags' do
       @post.tags.split(',').each do |tag|

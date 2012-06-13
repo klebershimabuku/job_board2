@@ -6,7 +6,10 @@ JobBoard2::Application.routes.draw do
                                             :sign_in => "login", 
                                             :sign_out => "logout" 
                                           }
-  resources :users
+  resources :users do 
+    resources :contact_infos
+  end
+  
   resources :posts do
     collection do
       get :successful_submitted, as: 'successful_submitted'

@@ -1,4 +1,10 @@
 pt-BR:
+  simple_form:
+    creating: "Criando..."
+    updating: 'Atualizando...'
+    buttons:
+      or: 'ou'
+      cancel: 'cancelar'
   date:
     abbr_day_names:
     - Dom
