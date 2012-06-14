@@ -12,7 +12,4 @@ It also allow registered users to create and publish their curriculum vitae.
 All the curriculum vitae become available for all registered companys.
 
 
-by [Kleber Shimabuku]
-
-
-(testing by Celo)
+by Kleber Shimabuku and Marcelo Mogami as main collaborator.
