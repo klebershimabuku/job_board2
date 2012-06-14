@@ -13,3 +13,6 @@ All the curriculum vitae become available for all registered companys.
 
 
 by [Kleber Shimabuku]
+
+
+(testing by Celo)
