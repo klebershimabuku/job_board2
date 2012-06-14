@@ -11,9 +11,10 @@ gem 'bootstrap-will_paginate', '0.0.5'
 gem 'thin'
 gem 'rails-timeago'
 gem 'simple_form'
+gem 'whenever', :require => false
 
 group :developement, :test do 
-  gem 'mysql2'
+  gem 'pg'
   gem 'rspec-rails', '2.10.1'
   gem 'guard-rspec', '0.5.5'
   gem 'simplecov', '0.6.1', :require => false
@@ -33,7 +34,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '0.12.2'
+  gem 'pg'
 end
 
 group :assets do
