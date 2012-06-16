@@ -1,6 +1,6 @@
 JobBoard2::Application.routes.draw do
   root to: "static_pages#home"
-
+  
   devise_for :users, :path_prefix => 'd', :controllers => { :registrations => "registrations" }, :path_names => { 
                                             :sign_up => "register", 
                                             :sign_in => "login", 

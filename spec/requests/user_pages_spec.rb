@@ -410,7 +410,6 @@ describe "UserPages" do
         valid_signin admin
         visit users_path
       end
-      it { should have_link('Excluir usuário', href: user_path(User.first)) }
       it "should be able to delete another user" do
         expect { click_link('Excluir usuário') }.to change(User, :count).by(-1)
       end

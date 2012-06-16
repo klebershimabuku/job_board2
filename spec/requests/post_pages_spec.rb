@@ -35,6 +35,17 @@ describe "PostPages" do
       end
     end
 
+    context 'should not include posts older than 3 months' do 
+      before do
+        user = FactoryGirl.create(:user)
+        @post = FactoryGirl.create(:post, status: 'approved', tags: 'gifu-ken', user_id: user.id, created_at: 4.months.ago)
+        Post.expire_older_than_3_months
+        visit posts_path 
+      end
+
+      it { Post.approved.should_not include(@post) }
+    end
+
   end
 
   describe "Tags Post Page" do 
