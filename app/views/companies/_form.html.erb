@@ -1,0 +1,26 @@
+<%= simple_form_for(@company) do |f| %>
+  <% if @company.errors.any? %>
+  <h3>Os seguintes erros foram encontrados:</h3>
+  <ul>
+    <% @company.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+  <% end %>
+
+  <%= f.input :name, label: "Nome da empresa" %>
+  <%= f.input :address, label: "Endereço" %>
+  <%= f.input :description, label: "Descrição", as: 'text', input_html: { size: '2x5'} %>
+
+  <ul>
+  <% Prefecture.all.each do |prefecture| %>
+    <li>
+      <%= check_box_tag("company[prefecture_ids][]", prefecture.id, @company.prefectures.include?(prefecture)) %>
+      <%= prefecture.name %>
+    </li>
+  <% end %>
+  </ul>
+
+  <%= f.submit @company.new_record? ? 'Cadastrar' : 'Salvar', class: 'btn btn-primary' %>
+
+<% end %>

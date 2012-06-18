@@ -1,0 +1,24 @@
+<% 
+@province = params[:name].capitalize
+@title = "Empreiteiras em #{@province}"
+provide(:title, @title) 
+%>
+
+<div class='row'>
+  <div class='page-header'>
+    <h1><%= @title %></h1>
+    <h2>Lista das empresas com atuação na província de <%= @province %></h2>
+  </div>
+  <div class='span8'>
+    <% if @companies.present? %>
+    <ul>
+      <% @companies.each do |company| %>
+      <li><%= link_to company.name, company_path(company) %></li>
+      <% end %>
+    </ul>
+    <% else %>
+      <h5>Não há empreiteiras cadastradas ainda.</h5>
+    <% end %>
+  </div>
+</div>
+

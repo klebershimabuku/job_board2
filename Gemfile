@@ -16,7 +16,7 @@ gem 'whenever', :require => false
 group :developement, :test do 
   gem 'pg'
   gem 'rspec-rails', '2.10.1'
-  gem 'guard-rspec', '0.5.5'
+  gem 'guard-rspec', '1.0.1'
   gem 'simplecov', '0.6.1', :require => false
   gem 'annotate', '~> 2.4.1.beta'
   gem 'quiet_assets'

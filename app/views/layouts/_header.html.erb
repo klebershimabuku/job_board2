@@ -3,6 +3,11 @@
     <div class="container">
       <%= link_to "shigotodoko", posts_path, id: "logo" %>
       <nav>
+        <ul class="nav pull-left">
+          <li>
+            <%= link_to 'Empreiteiras', prefectures_companies_path %>
+          </li>
+        </ul>
         <ul class="nav pull-right">
           <% if current_user && current_user.role == 'announcer' %>
           <li>

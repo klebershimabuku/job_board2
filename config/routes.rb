@@ -21,6 +21,17 @@ JobBoard2::Application.routes.draw do
   end
   get 'posts/tags/:tags' => 'posts#tags', as: 'tags_filter_post'
 
+  resources :companies, path: 'empresas' do
+    collection do
+      get :prefectures, to: 'companies#prefectures', path: 'provincias'
+      get '/provincias/:name', to: 'companies#list', as: 'list'
+    end
+  end
+
+  namespace :empresas do 
+    match ':name', to: 'companies#show', as: 'provincia'
+  end
+
   match '/seja-bem-vindo', :to => 'users#welcome', :as => 'user_registration_successfull'
   match "/ajuda", to: "static_pages#help"
   match "/sobre", to: "static_pages#about"

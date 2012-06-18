@@ -26,4 +26,14 @@ FactoryGirl.define do
     description "Address here, phone numbers and email addres"
     association :user
   end
+
+  factory :prefecture do 
+    name 'Aichi-ken'
+  end
+
+  factory :company do 
+    name 'First Company'
+    address 'Stree A, 1010'
+    description 'We are the champions'
+  end
 end

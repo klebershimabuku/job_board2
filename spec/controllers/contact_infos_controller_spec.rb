@@ -20,7 +20,7 @@ describe ContactInfosController do
   describe '#new' do 
     it 'should be be_successful' do
       @contact_info = mock(ContactInfo)
-      get :new
+      get :new, user_id: @user.id
       ContactInfo.stub(:new).and_return(@contact_info)
       assigns(:contact_info).should_not be_nil
       response.should be_successful
@@ -34,27 +34,27 @@ describe ContactInfosController do
     context 'successful' do
       it 'when creating a contact info' do 
         @contact_info.stub(:build_contact_info).and_return(@contact_info)
-        post :create
+        post :create, user_id: @user.id
       end
 
       it 'should save' do 
         @contact_info.stub(:save).and_return(true)
-        post :create
+        post :create, user_id: @user.id
       end
 
       it 'should displays a successful message' do 
-        post :create, contact_info: { title: 'params', description: 'params' }
+        post :create , user_id: @user.id, contact_info: { title: 'params', description: 'params' }
         flash[:success].should be_eql 'Informação de contato salva com sucesso.'
       end
 
       it 'should redirect to user page' do
-        post :create, contact_info: { title: 'params', description: 'params' }
+        post :create, user_id: @user.id, contact_info: { title: 'params', description: 'params' }
         response.should redirect_to user_path(@user)
       end
     end
     context 'failure' do
 
-      before { post :create }
+      before { post :create, user_id: @user.id }
 
       it 'when creating a contact info' do 
         @contact_info.stub(:build_contact_info).and_return(@contact_info)
@@ -73,7 +73,7 @@ describe ContactInfosController do
     before do
       @user          = FactoryGirl.create(:user)
       @contact_info  = FactoryGirl.create(:contact_info, user_id: @user.id)
-      get :edit, id: @contact_info.id
+      get :edit, id: @contact_info.id, user_id: @user.id
     end
 
     it 'should find object' do 
@@ -96,16 +96,16 @@ describe ContactInfosController do
         ContactInfo.any_instance.
           should_receive(:update_attributes).
           with({"these" => "params"})
-        put :update, :id => @contact_info, :contact_info => {"these" => "params"}
+        put :update, :id => @contact_info, user_id: @user.id, :contact_info => {"these" => "params"}
       end
 
       it 'should display success message' do 
-        put :update, :id => @contact_info, contact_info: {title: 'params', description: 'params'}
+        put :update, :id => @contact_info, user_id: @user.id, contact_info: {title: 'params', description: 'params'}
         flash[:success].should_not be_blank
       end
 
       it 'should redirect to the user page' do 
-        put :update, id: @contact_info, contact_info: {title: 'params', description: 'params'}
+        put :update, id: @contact_info, user_id: @user.id, contact_info: {title: 'params', description: 'params'}
         response.should redirect_to user_path(@user)
       end
 
@@ -124,11 +124,11 @@ describe ContactInfosController do
 
     it 'should destroy the object' do 
       @contact_info.stub!(:destroy).and_return(true)
-      delete :destroy, id: @contact_info.id.to_param
+      delete :destroy, id: @contact_info.id.to_param, user_id: @user.id
     end
 
     it 'should redirect to the user page' do 
-      delete :destroy, id: @contact_info
+      delete :destroy, id: @contact_info, user_id: @user.id
       response.should redirect_to user_path(@user)
     end
   end
