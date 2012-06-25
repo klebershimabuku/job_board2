@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<agencies>
+  <city>
+    <name>Shizuoka-shi</name>
+    <reception>Sexta 13:00～17:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Hamamatsu-shi</name>
+    <reception>Segunda～Sexta 8:30～17:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Numazu-shi</name>
+    <reception>Terça・Quinta 8:30～16:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Shimizu-shi</name>
+    <reception>Segunda 13:30～17:00 (Português, Espanhol) Terça 13:00～17:00 (Português, Espanhol) Sexta 13:00～17:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Kakegawa-shi</name>
+    <reception>Quinta 8:30～16:30 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Iwata-shi</name>
+    <reception>Terça・Quarta 8:30～17:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Fuji-shi</name>
+    <reception>Quarta 8:30～17:00 (Português)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+</agencies>

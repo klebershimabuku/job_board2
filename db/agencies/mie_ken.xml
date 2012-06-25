@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<agencies>
+  <city>
+    <name>Yokkaichi-shi</name>
+    <reception>Segunda・Quarta 9:00～12:00 (Português, Espanhol)</reception>
+    <address>Yokkaichi-shi Honmachi 3-95</address>
+    <phone>059-353-5566</phone>
+  </city>
+  <city>
+    <name>Tsu-shi</name>
+    <reception>Quarta・Sexta 13:00～16:00 (Português, Espanhol)</reception>
+    <address>Tsu-shi Shimazaki-cho 327-1</address>
+    <phone>059-228-9161</phone>
+  </city>
+  <city>
+    <name>Suzuka-shi</name>
+    <reception>Segunda～Sexta 8:30～17:00 (Português, Espanhol)</reception>
+    <address>Suzuka-shi Kanbe 9-13-3</address>
+    <phone>059-382-8609</phone>
+  </city>
+</agencies>

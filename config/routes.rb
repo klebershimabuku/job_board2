@@ -28,6 +28,9 @@ JobBoard2::Application.routes.draw do
     end
   end
 
+  get '/agencias-hello-work', to: 'agencies#index', as: 'hello_work_agencies'
+  get '/agencias-hello-work/:prefecture_name', to: 'agencies#list', as: 'hello_work_list_agencies'
+
   namespace :empresas do 
     match ':name', to: 'companies#show', as: 'provincia'
   end

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<agencies>
+  <city>
+    <name>Utsunomiya-shi</name>
+    <reception>Segunda・Quarta 13:00～17:00 (Português, Espanhol) Terça 8:30～11:30 (Português)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Moka-shi</name>
+    <reception>Terça～Quinta 13:00～17:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Oyama-shi</name>
+    <reception>Terça～Quinta 13:00～17:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+</agencies>

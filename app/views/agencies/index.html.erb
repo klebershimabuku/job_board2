@@ -1,11 +1,11 @@
-<% @title = 'Empreiteiras no Japão' %>
+<% @title = 'Agências Hello Work' %>
 <% provide(:title, @title) %>
 <div class='row'>
   <div class='span9'>
     <div class='page-header'>
-      <h1><%= @title %></h1>
-      <h2>O que são e o que fazem</h2>
-      <%= render 'about_contractors' %>
+      <h1>Agências Hello Work</h1>
+      <h2>Saiba o que é</h2>
+      <%= render 'about_hello_work' %>
     </div>
   </div>
   <div class='span3'>
@@ -14,7 +14,7 @@
         <h3>Onde encontrar na sua província:</h3>
       </div>
       <% @prefectures.each do |prefecture| %>
-      <li><%= link_to prefecture.name, list_companies_path(prefecture.name.downcase) %></li>
+      <li><%= link_to prefecture.name, hello_work_list_agencies_path(prefecture.name.downcase) %></li>
       <% end %>
     </ul>
   </div>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<agencies>
+  <city>
+    <name>Nagahama-shi</name>
+    <reception>Segunda～Quinta 13:00～17:00 (Português)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Hikone-shi</name>
+    <reception>Segunda・Quinta 13:00～17:00 (Português)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Higashiomi</name>
+    <reception>Terça・Quarta 9:00～17:00 (Português) Sexta 9:00～17:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Koka-shi</name>
+    <reception>Quinta 10:00～16:00 (Português, Espanhol) Sexta 9:00～16:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Kusatsu-shi</name>
+    <reception>Terça・Quinta 13:00～17:00 (Português)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+</agencies>

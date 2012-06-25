@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<agencies>
+  <city>
+    <name>Chiba-shi</name>
+    <reception>Quarta 10:30～15:30 (Português) Sexta 10:30～15:30 (Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Ichikawa-shi</name>
+    <reception>Segunda・Quinta 10:00～15:00 (Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Kisarazu-shi</name>
+    <reception>Sexta 13:00～17:00 (Português Terça) Sexta 9:00～12:00 (Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Matsudo-shi</name>
+    <reception>Terça 9:00～13:00 (Português) Quinta 13:00～16:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Funabashi-shi</name>
+    <reception>Terça・Quinta 10:00～15:00 (Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+</agencies>

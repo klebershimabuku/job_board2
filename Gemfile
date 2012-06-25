@@ -12,6 +12,7 @@ gem 'thin'
 gem 'rails-timeago'
 gem 'simple_form'
 gem 'whenever', :require => false
+gem 'yajl-ruby'
 
 group :developement, :test do 
   gem 'pg'

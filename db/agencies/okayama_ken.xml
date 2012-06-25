@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<agencies>
+  <city>
+    <name>Okayama-shi</name>
+    <reception>Terça・Quinta 13:00～17:00 (Português)</reception>
+    <address>Não disponível</address>
+    <phone>Não disponível</phone>
+  </city>
+  <city>
+    <name>Kurashiki-chuo</name>
+    <reception>Quinta 13:00～17:00 (Português)</reception>
+    <address>Não disponível</address>
+    <phone>Não disponível</phone>
+  </city>
+  <city>
+    <name>Soja-shi</name>
+    <reception>Quarta・Sexta 13:00～17:00 (Português)</reception>
+    <address>Não disponível</address>
+    <phone>Não disponível</phone>
+  </city>
+  <city>
+    <name>Kasaoka-shi</name>
+    <reception>Quinta 13:00～17:00 (Português)</reception>
+    <address>Não disponível</address>
+    <phone>Não disponível</phone>
+  </city>
+</agencies>

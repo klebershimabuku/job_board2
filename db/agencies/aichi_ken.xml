@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<agencies>
+  <city>
+    <name>Tsuchiura-shi</name>
+    <reception>Terça・Quinta 10:00～15:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Nagoya naka</name>
+    <reception>Segunda～Sexta 9:30～16:30 (Português)</reception>
+    <address>Nagoya-shi Naka-ku Sakae 4-1-1 Chunichi Bldg 12F</address>
+    <phone>052-264-1901</phone>
+  </city>
+  <city>
+    <name>Nagoya minami</name>
+    <reception>Quinta 10:00～17:00 (Português)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Toyohashi-shi</name>
+    <reception>Segunda・Quarta・Sexta 10:00～17:00 (Português)</reception>
+    <address>Toyohashi-shi Okuni-cho 111</address>
+    <phone>0532-52-7191</phone>
+  </city>
+  <city>
+    <name>Okazaki-shi</name>
+    <reception>Segunda・Quarta・Sexta 9:30～16:30 (Português)</reception>
+    <address>Okazaki-shi Hanemachi Kitakanji 50-1</address>
+    <phone>0564-52-8609</phone>
+  </city>
+  <city>
+    <name>Handa-shi</name>
+    <reception>Terça・Quarta 9:00～16:00 (Português)</reception>
+    <address>Handa-shi Miyaji-cho 200-4</address>
+    <phone>0569-21-0252</phone>
+  </city>
+  <city>
+    <name>Toyota-shi</name>
+    <reception>Segunda～Sexta 10:00～17:00 (Português)</reception>
+    <address>Toyota-shi Tokiwa-cho 3-25-7</address>
+    <phone>0565-31-1400</phone>
+  </city>
+  <city>
+    <name>Kariya-shi</name>
+    <reception>Segunda～Sexta 9:30～16:30 (Português)</reception>
+    <address>Kariya-shi Wakamatsu-cho 1-46-3</address>
+    <phone>0566-21-5298</phone>
+  </city>
+  <city>
+    <name>Nishio-shi</name>
+    <reception>Segunda 9:30～16:30 (Português)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Inuyama-shi</name>
+    <reception>Segunda・Terça・Quinta 9:30～16:30 (Português)</reception>
+    <address>Inuyama-shi Matsumoto-cho 2-10</address>
+    <phone>0568-61-2187</phone>
+  </city>
+  <city>
+    <name>Kasugai-shi</name>
+    <reception>Sexta 10:00～17:00 (Português)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+</agencies>

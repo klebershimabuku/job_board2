@@ -357,6 +357,7 @@ $mediumSize: 17px;
   left: auto;
   right: 13px;
 }
+
 /* universal */
 
 html {
@@ -528,6 +529,19 @@ aside {
     padding-bottom: 20px;
     border-bottom: 1px solid #333;
   }
+}
+
+/* provinces */
+
+.provinces-list {
+  background-color: #FFF;
+  padding: 10px;
+  margin: 0px 10px 10px 50px; 
+  list-style: none;
+}
+
+.provinces-list ul li {
+  margin-top: 10px;
 }
 
 /* ----- SimpleForm Styles ----- */

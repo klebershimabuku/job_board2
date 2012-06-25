@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<agencies>
+  <city>
+    <name>Maebashi-shi</name>
+      <reception>Segunda 11:00～17:00 (Português, Espanhol) Quinta 10:00～17:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Isesaki-shi</name>
+    <reception>Terça・Quinta 9:00～15:00 (Português, Espanhol) Sexta 13:00～17:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Ota-shi</name>
+    <reception>Segunda・Sexta 9:00～17:00 (Português, Espanhol) Terça～Quinta 9:00～15:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Tatebayashi-shi</name>
+    <reception>Sexta 9:00～17:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+</agencies>

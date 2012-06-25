@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<agencies>
+  <city>
+    <name>Gifu-shi</name>
+    <reception>Terça 13:00～17:00 (Português)</reception>
+    <address>Gifu-shi Gotsubo 1-9-1</address>
+    <phone>058-247-3211</phone>
+  </city>
+  <city>
+    <name>Ogaki-shi</name>
+    <reception>Segunda～Sexta 9:00～17:00 (Português)</reception>
+    <address>Ogaki-shi Fujie-cho 1-1-8</address>
+    <phone>0584-73-8609</phone>
+  </city>
+  <city>
+    <name>Tajimi-shi</name>
+    <reception>Segunda～Sexta 9:00～17:00 (Português)</reception>
+    <address>Tajimi-shi Otowa-cho 5-39-1</address>
+    <phone>0572-22-3381</phone>
+  </city>
+  <city>
+    <name>Seki-shi</name>
+    <reception>Segunda～Sexta 9:00～17:00 (Português)</reception>
+    <address>Não disponível</address>
+    <phone>Não disponível</phone>
+  </city>
+  <city>
+    <name>Minokamo-shi</name>
+    <reception>Segunda・Quarta・Quinta ・Sexta 9:00～17:00 (Português)</reception>
+    <address>Minokamo-shi Fukata-cho 1-206-9</address>
+    <phone>0574-25-2178</phone>
+  </city>
+</agencies>

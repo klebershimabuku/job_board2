@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<agencies>
+  <city>
+    <name>Nagano-shi</name>
+    <reception>Sexta 13:00～17:00 (Português)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Matsumoto-shi</name>
+    <reception>Sexta 13:00～17:00 (Português)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Ueda-shi</name>
+    <reception>Segunda Sexta 13:00～17:00 (Português)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Ina-shi</name>
+    <reception>Sexta 9:00～17:00 (Português)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Suwa-shi</name>
+    <reception>Terça 9:00～17:00 (Português)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+</agencies>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<agencies>
+  <city>
+    <name>Yokohama-shi</name>
+    <reception>Quarta・Quinta 9:00～16:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Kawasaki-shi</name>
+    <reception>Terça 9:00～16:00 (Espanhol) Sexta 9:00～16:00 (Português)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Hiratsuka-shi</name>
+    <reception>Segunda・Terça・Quinta ・Sexta 9:00～16:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Fujisawa-shi</name>
+    <reception>Terça・Quinta 9:00～16:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Atsugi-shi</name>
+    <reception>Segunda～Sexta 9:00～16:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+  <city>
+    <name>Yamato-shi</name>
+    <reception>Segunda～Sexta 9:00～16:00 (Português, Espanhol)</reception>
+    <address>Não disponível.</address>
+    <phone>Não disponível.</phone>
+  </city>
+</agencies>
