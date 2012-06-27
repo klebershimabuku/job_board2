@@ -17,7 +17,7 @@ gem 'yajl-ruby'
 group :developement, :test do 
   gem 'pg'
   gem 'rspec-rails', '2.10.1'
-  gem 'guard-rspec', '1.0.1'
+  gem 'guard-rspec', '1.1.0'
   gem 'simplecov', '0.6.1', :require => false
   gem 'annotate', '~> 2.4.1.beta'
   gem 'quiet_assets'
@@ -25,8 +25,14 @@ end
 
 group :test do 
   gem 'capybara', '1.1.2'
-  gem 'rb-inotify', '0.8.8'
-  gem 'libnotify', '0.5.9'
+  
+  # Uncomment these lines if you are on Ubuntu.
+  #gem 'rb-inotify', '0.8.8'
+  #gem 'libnotify', '0.5.9'
+  
+  gem 'growl'
+  gem 'rb-fsevent'
+  gem 'spork-rails'
   gem 'guard-spork', '0.3.2'
   gem 'spork', '~> 1.0rc'
   gem 'factory_girl_rails', '1.4.0'

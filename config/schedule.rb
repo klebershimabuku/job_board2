@@ -20,6 +20,6 @@
 # Learn more: http://github.com/javan/whenever
 set :environment, 'development'
 
-every 1.days, at: '0 am' do 
+every 1.days, at: '00:00' do 
   runner "Post.expire_older_than_3_months"
 end
