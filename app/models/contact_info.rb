@@ -2,10 +2,10 @@
 #
 # Table name: contact_infos
 #
-#  id          :integer(4)      not null, primary key
+#  id          :integer         not null, primary key
 #  title       :string(255)
 #  description :string(255)
-#  user_id     :integer(4)
+#  user_id     :integer
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
 #
@@ -15,4 +15,5 @@ class ContactInfo < ActiveRecord::Base
   validates :title,         presence: true
   validates :description,   presence: true
 end
+
 
