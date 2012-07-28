@@ -398,6 +398,20 @@ input, textarea, select, .uneditable-input {
   @include box_sizing;
 }
 
+/* Contact form */
+#new_message input, #new_message textarea, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 70%;
+  padding: 10px;
+  height: auto;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+#new_message input.btn {
+  width: 10%;
+}
+
+
 #error_explanation {
   color:#f00;
   ul {

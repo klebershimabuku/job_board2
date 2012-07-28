@@ -40,5 +40,6 @@ JobBoard2::Application.routes.draw do
   match '/seja-bem-vindo', :to => 'users#welcome', :as => 'user_registration_successfull'
   match "/ajuda", to: "static_pages#help"
   match "/sobre", to: "static_pages#about"
-  match "/contato", to: "static_pages#contact"
+  match '/contato', to: "contact#new", as: 'contact', :via => :get
+  match '/contato', to: 'contact#create', as: 'contact', :via => :post
 end
