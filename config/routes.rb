@@ -1,7 +1,7 @@
 JobBoard2::Application.routes.draw do
   ActiveAdmin.routes(self)
 
-  root to: "static_pages#home"
+  root to: "posts#index"
   
   devise_for :users, :path_prefix => 'd', :controllers => { :registrations => "registrations" }, :path_names => { 
                                             :sign_up => "register", 

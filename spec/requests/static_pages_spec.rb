@@ -6,9 +6,6 @@ describe "StaticPages" do
 
   describe 'Home Page' do
     before(:each) { visit root_path }
-    it "should have the content 'Bem vindo'" do
-      should have_selector('h1', :text => 'Bem vindo')
-    end
     it "should have the right title" do
       should have_selector('title', :text => full_title('') )
     end
