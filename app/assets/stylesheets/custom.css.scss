@@ -411,6 +411,21 @@ input, textarea, select, .uneditable-input {
   @extend .error;
  }
 
+div.share {
+  padding-top: 20px;
+  border-top: 1px solid #CCC;
+}
+div.share, .fb-like, .twitter {
+	margin-top: 8px;
+	font-size: 1px;
+	display: inline-block;
+	height: 21px;
+}
+div.share a {
+	color: #FFF;
+}
+
+
 /* footer */
 
 footer {
