@@ -81,14 +81,6 @@ describe "UserPages" do
           it { should have_info_message("Login efetuado com sucesso!") }
         end
 
-        context "as admin" do
-          before do 
-            click_link 'Sair'
-            valid_signin admin
-          end
-          it { should have_link('Usuários', href: users_path) }
-        end
-
         context "followed by a signout" do
           before { click_link 'Sair' }
           it { should have_link('Entrar', href: new_user_session_path) } 
@@ -117,10 +109,6 @@ describe "UserPages" do
             context "submitting to the update action" do 
               before { put user_path(user) }
               specify { response.should redirect_to root_path }
-            end
-            context "visiting the index" do
-              before { visit users_path }
-              it { should have_selector('title', text: "ShigotoDoko") }
             end
           end
         end
@@ -164,34 +152,13 @@ describe "UserPages" do
     end
   end
 
-  describe "index action" do
-
-    context 'when admin' do 
-      before do
-        valid_signin FactoryGirl.create(:admin)
-        FactoryGirl.create(:user, name: "Bob", email: "bob@example.com")
-        FactoryGirl.create(:user, name: "Alex", email: "alex@example.com")
-        visit users_path
-      end
-
-      it { should have_selector('h1', text: "Todos usuários") }
-      it "list each user" do
-        User.all.each do |u|
-          page.should have_selector('li', text: u.name)
-        end
-      end
-    end
-
-    pending 'when member'
-  end
-
   describe "show action (profile)" do
 
     #
-    # Announcer users should only be allowed to create Posts
+    # publisher users should only be allowed to create Posts
     #
-    context 'when user is a announcer' do 
-      let(:user) { FactoryGirl.create(:user, role: 'announcer') }
+    context 'when user is a publisher' do 
+      let(:user) { FactoryGirl.create(:user, role: 'publisher') }
       before do
         2.times { FactoryGirl.create(:post, status: 'approved', user_id: user.id) }
         1.times { FactoryGirl.create(:post, status: 'pending', user_id: user.id) }
@@ -348,72 +315,6 @@ describe "UserPages" do
           it { should have_selector('title', text: "Edição de perfil") }
         end
       end
-    end
-  end
-
-  describe "destroy action" do
-    
-    let(:user) { FactoryGirl.create(:user) }
-    let(:another_user) { FactoryGirl.create(:user, email: "another@user.com") }
-
-    describe "for signin users" do
-
-      before do
-        valid_signin user
-        visit edit_user_path(user)
-      end
-
-      it { should have_link("Excluir minha conta", href: user_path(user), method: :delete) }
-
-      context "decrement user count" do
-        before { click_link "Excluir minha conta" }
-        #expect { User.count }
-      end
-    end
-    
-    context "for non-signin users" do
-    end
-  end
-
-  describe "pagination" do
-    
-    before(:all) { 30.times { FactoryGirl.create(:user) } }
-    after(:all) { User.delete_all }
-
-    let(:admin) { FactoryGirl.create(:admin) }
-
-    before do
-      valid_signin admin
-      visit users_path
-   end
-
-    it { should have_link('Próximos') }
-    its(:html) { should match('>2</a>') }
-
-    it "should list each user" do
-      User.all[0..2].each do |user|
-        page.should have_selector('li', text: user.name)
-      end
-    end
-  end
-
-  describe "delete links" do
-    subject { page }
-    it { should_not have_link('Excluir usuário') }
-
-    before { 4.times { FactoryGirl.create(:user) } }
-    after { User.delete_all }
-
-    describe "as admin" do
-      let(:admin) { FactoryGirl.create(:admin) }
-      before do
-        valid_signin admin
-        visit users_path
-      end
-      it "should be able to delete another user" do
-        expect { click_link('Excluir usuário') }.to change(User, :count).by(-1)
-      end
-      it { should_not have_link('Excluir usuário', href: user_path(admin)) }
     end
   end
 end

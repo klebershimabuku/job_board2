@@ -13,7 +13,7 @@ describe ContactInfosController do
 
   before(:each) do
     @request.env["devise.mapping"] = Devise.mappings[:user]
-    @user = FactoryGirl.create(:user, role: 'announcer')
+    @user = FactoryGirl.create(:user, role: 'publisher')
     sign_in @user
   end
 

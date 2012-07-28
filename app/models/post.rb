@@ -23,22 +23,25 @@ class Post < ActiveRecord::Base
 
   validates :title,       presence: true
   validates :description, presence: true
-  validates :location,    presence: true
+  validates :location,    presence: true, valid_province: true
 
   belongs_to :user
 
-  scope :approved_filter_by_tag, lambda { |tag| where("tags LIKE ? and status = ?", "%#{tag}%", "approved") }
+  scope :published_filter_by_tag, lambda { |tag| where("tags LIKE ? and status = ?", "%#{tag}%", "published") }
+  scope :pendings, where('status = ?', 'pending')
+  scope :expireds, where('status = ?', 'expired')
+  scope :publisheds, where('status = ?', 'published')
 
   def self.expire_older_than_3_months
     where('created_at <= ?', 3.months.ago).each do |p|
-      p.expire
+      p.expire!
     end
   end
 
   def self.available_tags
     provinces = []
 
-    approved.select { |post| provinces << post.tags.split(',') }
+    published.select { |post| provinces << post.tags.split(',') }
 
     available_tags = provinces.flatten.uniq.sort!
   end
@@ -47,11 +50,11 @@ class Post < ActiveRecord::Base
     "#{id}-#{title.downcase.parameterize}"
   end
 
-  def self.approved
-    where('status = ?', 'approved').order('created_at DESC')
+  def self.published
+    where('status = ?', 'published').order('published_at DESC')
   end
   
-  def publish
+  def publish!
     update_column(:status, 'published')
     update_column(:published_at, Time.now)
   end
@@ -60,7 +63,7 @@ class Post < ActiveRecord::Base
     status == 'published'
   end
   
-  def expire
+  def expire!
     update_column(:status, 'expired')
     update_column(:expired_at, Time.now)
   end
@@ -83,7 +86,7 @@ class Post < ActiveRecord::Base
 
   def generate_tags
     pattern = /(\w+-ken)/
-    results = location.scan(pattern)
+    results = location.downcase.scan(pattern)
     self.tags = results.each { |x| x.to_s }.join(',').downcase
   end
 

@@ -42,15 +42,27 @@ describe Post do
     before do
       @post = FactoryGirl.create(:post)
     end
-    
     it { @post.published_at.should be_nil }
     it { @post.expired_at.should be_nil }
+  end
+  
+  describe 'new post with invalid province in location' do
+    
+    context 'when location is AOCHI' do
+      before do
+        @post = Post.new(title: 'Title', description: 'Text', location: 'AOCHI')
+        @post.save
+      end
+      it 'should raise an error' do
+        @post.errors[:location].should include 'precisa conter uma província válida'
+      end
+    end
   end
   
   describe '#publish' do
     before do
       @post = FactoryGirl.create(:post)
-      @post.publish
+      @post.publish!
     end
     it { @post.published_at.should_not be_nil }
     it { @post.status.should be_eql('published') }
@@ -59,7 +71,7 @@ describe Post do
   describe '#published?' do
     before do
       @post = FactoryGirl.create(:post)
-      @post.publish
+      @post.publish!
     end
     it { @post.published?.should be_true }
     it { @post.status.should be_eql('published') }
@@ -68,7 +80,7 @@ describe Post do
   describe '#expired?' do
     before do
       @post = FactoryGirl.create(:post)
-      @post.expire
+      @post.expire!
     end
     it { @post.expired?.should be_true }
     it { @post.status.should be_eql('expired') }
@@ -77,22 +89,22 @@ describe Post do
   describe '#expire' do
     before do
       @post = FactoryGirl.create(:post)
-      @post.expire
+      @post.expire!
     end
     it { @post.expired_at.should_not be_nil }
     it { @post.status.should be_eql('expired') }
   end
 
-  describe ".approved_filter_by_tag" do 
+  describe ".published_filter_by_tag" do 
     before do 
       
       Post.delete_all
 
-      @attributes = { title: 'New job', description: 'work with us today', location: 'Shizuoka-ken, Aichi-ken', status: 'approved' }
+      @attributes = { title: 'New job', description: 'work with us today', location: 'Shizuoka-ken, Aichi-ken', status: 'published' }
       Post.create!(@attributes)
       Post.create!(@attributes.merge(status: 'pending'))
 
-      @f = Post.approved_filter_by_tag('aichi-ken')
+      @f = Post.published_filter_by_tag('aichi-ken')
     end
     it { @f.size.should == 1 }
   end
@@ -105,7 +117,6 @@ describe Post do
       before { @post = Post.create!(@attributes) }
       it { @post.tags.should == 'shizuoka-ken' }
     end
-
     context "when location is 'Aichi-ken'" do 
       before { @post = Post.create!(@attributes.merge(location: 'Aichi-ken')) }
       it { @post.tags.should == 'aichi-ken' }
@@ -117,6 +128,14 @@ describe Post do
     context "when location is 'Kanagawa-ken, Yokohama-shi, Gifu-ken, Tochigi-ken'" do 
       before { @post = Post.create!(@attributes.merge(location: 'Kanagawa-ken, Yokohama-shi, Gifu-ken, Tochigi-ken')) }
       it { @post.tags.should == 'kanagawa-ken,gifu-ken,tochigi-ken' }
+    end
+    context "when location is 'AICHI-KEN'" do 
+      before { @post = Post.create!(@attributes.merge(location: 'AICHI-KEN')) }
+      it { @post.tags.should == 'aichi-ken' }
+    end
+    context "when location is 'Aichi-Ken'" do 
+      before { @post = Post.create!(@attributes.merge(location: 'Aichi-Ken')) }
+      it { @post.tags.should == 'aichi-ken' }
     end
   end
 
@@ -146,12 +165,46 @@ describe Post do
     end
   end
 
-  describe '.approved' do 
-    let(:p1) { FactoryGirl.create(:post, status: 'approved') }
-    let(:p2) { FactoryGirl.create(:post, status: 'approved') }
+  describe '.published' do 
+    let(:p1) { FactoryGirl.create(:post, status: 'published') }
+    let(:p2) { FactoryGirl.create(:post, status: 'published') }
     let(:p3) { FactoryGirl.create(:post, status: 'pending') }
-    let(:p4) { FactoryGirl.create(:post, status: 'approved') }
-    it { Post.approved.should_not include(p3) }
-    it { Post.approved.should include(p1,p2,p4) }
+    let(:p4) { FactoryGirl.create(:post, status: 'published') }
+    it { Post.published.should_not include(p3) }
+    it { Post.published.should include(p1,p2,p4) }
   end
+  
+  describe 'scope#pendings' do
+    before do
+      3.times do 
+        FactoryGirl.create(:post, status: 'pending')
+      end
+      FactoryGirl.create(:post, status: 'published')
+      @pendings = Post.pendings
+    end
+    it { @pendings.size.should == 3 }
+  end
+
+  describe 'scope#expireds' do
+    before do
+      3.times do 
+        FactoryGirl.create(:post, status: 'expired')
+      end
+      FactoryGirl.create(:post, status: 'published')
+      @expireds = Post.expireds
+    end
+    it { @expireds.size.should == 3 }
+  end
+
+  describe 'scope#publisheds' do
+    before do
+      3.times do 
+        FactoryGirl.create(:post, status: 'published')
+      end
+      FactoryGirl.create(:post, status: 'expired')
+      @publisheds = Post.publisheds
+    end
+    it { @publisheds.size.should == 3 }
+  end
+      
 end

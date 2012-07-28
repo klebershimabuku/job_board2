@@ -16,7 +16,6 @@
           <li><%= link_to 'Empreiteiras', prefectures_companies_path %></li>
           <li><%= link_to 'Hello Work', hello_work_agencies_path %></li>
           <% if user_signed_in? %>
-          <li><%= link_to "Usuários", users_path if admin? %></li>
           <li id="fat-menu" class="dropdown">
              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Conta <b class="caret"></b>

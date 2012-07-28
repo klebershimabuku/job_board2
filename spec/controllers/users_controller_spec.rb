@@ -33,24 +33,6 @@ describe UsersController do
     end
   end
 
-  describe 'GET index' do
-
-    context '#index as admin' do 
-      login_admin
-      it 'as admin' do 
-        get 'index'
-        response.should be_successful
-      end
-    end
-
-    context '#index as non admin' do
-      it 'as guest' do
-        get 'index'
-        response.should_not be_successful
-      end
-    end
-  end
-
   describe 'GET show' do
     let(:user) { FactoryGirl.create(:user) }
 

@@ -10,7 +10,7 @@
 #  updated_at  :datetime        not null
 #
 class ContactInfo < ActiveRecord::Base
-  attr_accessible :description, :title
+  attr_accessible :description, :title, :user_id
   belongs_to :user
   validates :title,         presence: true
   validates :description,   presence: true

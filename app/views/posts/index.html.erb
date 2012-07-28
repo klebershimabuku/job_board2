@@ -12,13 +12,13 @@
           <div class='span9 offset0'>
             <h3><%= link_to post.title, post_path(post) %></h3>
             <p class='location'><%= post.location %></p>
-            <p class='tags'>Tags: 
+            <p>Tags: 
               <%= link_tags(post.tags) %>
             </p>
           </div>
 
           <div class='span3 offset10'>
-            <p class='created_at'><%= timeago_tag post.created_at %></p>
+            <p class='created_at'><%= timeago_tag post.published_at %></p>
             <p><span class='company_name label label-company-name'><%= post.user.contact_info.title %></span></p>
           </div>
 
@@ -34,15 +34,14 @@
 
     <h3>TAGS</h3>
     <h4>Filtre anúncios por região</h4>
-
-    <ul class='taglist-vertical'>
+    <br>
+    <ul class='taglist-vertical tags tags-alt'>
     <% @posts.available_tags.each do |tag| %>
       <li><%= link_to tag, tags_filter_post_path(tag) %></li>
     <% end %>
     </ul>
     <hr />
-    <h5><%= link_to 'Siga o shigotodoko no Twitter', 'http://twitter.com/shigotodoko' %></h5>
-
+    <iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/follow_button.1340179658.html#_=1341885896758&amp;id=twitter-widget-26&amp;lang=pt&amp;screen_name=shigotodoko&amp;show_count=true&amp;show_screen_name=true&amp;size=m" class="twitter-follow-button" style="width: 238px; height: 20px; " title="Twitter Follow Button"></iframe>
   </div>
 
 </div>

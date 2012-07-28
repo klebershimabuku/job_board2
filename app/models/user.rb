@@ -34,4 +34,17 @@ class User < ActiveRecord::Base
   # Create associations
   has_many :posts
   has_one :contact_info, :dependent => :destroy
+  
+  # Admin scopes
+  scope :publishers, where('role = ?', 'publisher')
+
+  # Make a 'member' user an 'publisher'
+  def promote_to_publisher!
+    update_column(:role, 'publisher')
+  end
+  
+  # Checks whether the user is an publisher
+  def publisher?
+    role == 'publisher'
+  end
 end

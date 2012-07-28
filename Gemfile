@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'http://gemcutter.org'
 
 gem 'rails', '3.2.3'
 gem 'jquery-rails'
@@ -6,13 +7,16 @@ gem 'bootstrap-sass'
 gem 'devise', '2.0.4'
 gem 'cancan', '1.6.7'
 gem 'faker', '1.0.1'
-gem 'will_paginate', '3.0.3'
+gem 'kaminari', '0.13.0'
 gem 'bootstrap-will_paginate', '0.0.5'
 gem 'thin'
 gem 'rails-timeago'
 gem 'simple_form'
 gem 'whenever', :require => false
 gem 'yajl-ruby'
+gem 'activeadmin', '0.4.4'
+gem 'rdiscount', '1.6.8'
+gem 'rails_autolink', '1.0.7'
 
 group :developement, :test do 
   gem 'pg'

@@ -17,12 +17,15 @@ end
 
 module JobBoard2
   class Application < Rails::Application
+    
+    require 'rails_autolink'
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
     # Custom directories with classes and modules you want to be autoloadable.
-    config.autoload_paths += %W(#{config.root}/lib/extras)
+    config.autoload_paths += %W(#{config.root}/lib/extras/ #{config.root}/lib/validators/)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -65,6 +68,6 @@ module JobBoard2
 
     config.assets.initialize_on_compile = false
 
-    config.action_mailer.default_url_options = { :host => 'localhost' }
+    config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   end
 end

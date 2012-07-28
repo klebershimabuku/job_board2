@@ -1,0 +1,58 @@
+// Active Admin CSS Styles
+@import "active_admin/mixins";
+@import "active_admin/base";
+
+// To customize the Active Admin interfaces, add your
+// styles here:
+
+form input[type="text"], form input[type="password"], form input[type="email"], form input[type="url"], form input[type="tel"], form textarea {
+  width: 76%;
+  border: 1px solid #C9D0D6;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-size: 1.5em;
+  font-family: Helvetica, Arial, sans-serif;
+  outline: none;
+  padding: 8px 10px 7px;
+}
+
+.label-expired {
+  background-color: #333333;
+}
+.label-published {
+  background-color: #468847;
+}
+.label-pending {
+  background-color: #f89406;
+}
+.label-status {
+  padding: 1px 4px 2px;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+          font-size: 10.998px;
+          font-weight: bold;
+          line-height: 14px;
+          color: #ffffff;
+          text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+          white-space: nowrap;
+          vertical-align: baseline;
+          
+}
+
+#generic {
+  border: 1px solid #EEE;
+}
+
+#generic tr th {
+  padding: 10px;
+  border-bottom: 1px solid #EEE;
+  background-color: #DDD;
+} 
+
+#generic tr td {
+  padding: 10px;
+  border-bottom: 0.1em solid #e6e7e8;
+  background-color: #F4F4F4;
+}

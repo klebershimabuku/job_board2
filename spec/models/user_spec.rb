@@ -122,4 +122,20 @@ describe User do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { should_not be_valid }
   end
+  
+  describe '#promote_to_publisher!' do
+    before do
+      @user.save
+      @user.promote_to_publisher!
+    end
+    it { @user.role.should == 'publisher' }
+  end
+  
+  describe '#publisher?' do
+    before do
+      @user.save
+      @user.promote_to_publisher!
+    end
+    it { @user.publisher?.should be_true }
+  end
 end

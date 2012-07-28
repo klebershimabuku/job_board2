@@ -12,12 +12,11 @@ class Ability
       can :manage, User , :id => user.id
       can :tags, Post
       cannot :index, User # list users page
-    elsif user.role == 'announcer'
+    elsif user.role == 'publisher'
       can :manage, User , :id => user.id
       can :manage, Post , :user_id => user.id
       can :manage, ContactInfo, :user_id => user.id
     else
-      cannot :index, User # list users page
       can :read, :all
     end
   end

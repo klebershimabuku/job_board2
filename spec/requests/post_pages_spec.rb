@@ -12,17 +12,17 @@ describe "PostPages" do
       user = FactoryGirl.create(:user)
       contact_info = FactoryGirl.create(:contact_info, user_id: user.id)
       
-      FactoryGirl.create(:post, status: 'approved', tags: 'aichi-ken', user_id: user.id)
-      FactoryGirl.create(:post, status: 'approved', tags: 'gifu-ken', user_id: user.id)
-      FactoryGirl.create(:post, status: 'approved', tags: 'tochigi-ken,gunma-ken', user_id: user.id)
+      FactoryGirl.create(:post, status: 'published', tags: 'aichi-ken', user_id: user.id)
+      FactoryGirl.create(:post, status: 'published', tags: 'gifu-ken', user_id: user.id)
+      FactoryGirl.create(:post, status: 'published  ', tags: 'tochigi-ken,gunma-ken', user_id: user.id)
 
       visit posts_path
     end
     it { should have_selector('title', text: 'Empregos no Japão') }
     it { should have_selector('h4', text: 'Filtre anúncios por região') }
 
-    it 'lists each approved job' do 
-      Post.approved.each do |p|
+    it 'lists each published job' do 
+      Post.published.each do |p|
         should have_selector('h3', text: p.title)
         should have_selector('p', text: p.location)
         should have_link(p.tags, href: tags_filter_post_path(p.tags) )
@@ -38,12 +38,12 @@ describe "PostPages" do
     context 'should not include posts older than 3 months' do 
       before do
         user = FactoryGirl.create(:user)
-        @post = FactoryGirl.create(:post, status: 'approved', tags: 'gifu-ken', user_id: user.id, created_at: 4.months.ago)
+        @post = FactoryGirl.create(:post, status: 'published', tags: 'gifu-ken', user_id: user.id, created_at: 4.months.ago)
         Post.expire_older_than_3_months
         visit posts_path 
       end
 
-      it { Post.approved.should_not include(@post) }
+      it { Post.published.should_not include(@post) }
     end
 
   end
@@ -57,7 +57,7 @@ describe "PostPages" do
           @title = 'Vagas em Aichi-ken'
           Post.create!(title: 'Job in Aichi', 
                        description: 'anytext', 
-                       status: 'approved',
+                       status: 'published',
                        location: 'aichi-ken')
 
 
@@ -67,7 +67,7 @@ describe "PostPages" do
         it { should have_selector('h1', text: @title) }
 
         it 'lists each filtered job by tag' do
-          Post.approved_filter_by_tag('aichi-ken').each do |p|
+          Post.published_filter_by_tag('aichi-ken').each do |p|
             page.should have_selector('li', text: p.title)
           end
         end
@@ -81,12 +81,12 @@ describe "PostPages" do
 
           Post.create!(title: 'Job in Aichi', 
                        description: 'anytext', 
-                       status: 'approved',
+                       status: 'published',
                        location: 'aichi-ken,shizuoka-ken')
 
           Post.create!(title: 'Job in Yokohama-shi', 
                        description: 'anytext',
-                       status: 'approved',
+                       status: 'published',
                        location: 'gunma-ken,osaka-fu,aichi-ken')
 
           visit tags_filter_post_path(@filter)
@@ -95,7 +95,7 @@ describe "PostPages" do
         it { should have_selector('h1', text: @title) }
 
         it 'lists each filtered job by tag' do
-          Post.approved_filter_by_tag('aichi-ken').each do |p|
+          Post.published_filter_by_tag('aichi-ken').each do |p|
             page.should have_selector('li', text: p.title)
           end
         end
@@ -117,7 +117,7 @@ describe "PostPages" do
 
   describe "New Post Page" do 
     let(:counter) { Post.count }
-    let(:user) { FactoryGirl.create(:user, role: 'announcer') }
+    let(:user) { FactoryGirl.create(:user, role: 'publisher') }
 
     context 'with non signed-in users' do 
       before { visit new_post_url }
@@ -148,10 +148,11 @@ describe "PostPages" do
 
         context 'redirects to a successful page' do
           before do
-            post user_session_path(user: { email: user.email, password: user.password } )
-            post posts_path(post: {title: 'title', description: 'some text', location: 'japan'} )
+            click_button :submit
           end
-          specify { response.should redirect_to successful_submitted_posts_path }
+          it 'should redirect to a successful page' do
+            expect { response.should redirect_to successful_submitted_posts_path }
+          end
         end
 
         context "when post is successful submited" do
@@ -193,7 +194,7 @@ describe "PostPages" do
 
   describe "Edit Post Page" do 
     before do 
-      @user = FactoryGirl.create(:user, role: 'announcer')
+      @user = FactoryGirl.create(:user, role: 'publisher')
       @post = FactoryGirl.create(:post, user_id: @user.id)
       visit edit_post_path(@post)
     end
@@ -257,7 +258,7 @@ describe "PostPages" do
   describe "Show Post Page" do 
 
     before do
-      @user = FactoryGirl.create(:user, role: 'announcer')
+      @user = FactoryGirl.create(:user, role: 'publisher')
       @contact_info = FactoryGirl.create(:contact_info, user_id: @user.id)
       @post = @user.posts.build(title: 'Awesome job!',
                                 description: 'Work with us today',
@@ -270,7 +271,7 @@ describe "PostPages" do
     it { should have_selector('h1', text: @post.title) }
     it { should have_content(@post.description) }
     it { should have_content(@post.location) }
-    it { should have_content('criado') }
+    it { should have_content('publicado') }
     it "should have content 'Nome da empresa' " do 
       should have_content(@contact_info.title)
     end
@@ -316,7 +317,7 @@ describe "PostPages" do
 
   describe "Suspend Post Page" do 
     before do
-      @user = FactoryGirl.create(:user, role: 'announcer')
+      @user = FactoryGirl.create(:user, role: 'publisher')
       @post = @user.posts.build(title: 'Awesome job!',
                                 description: 'Work with us today',
                                 location: 'Aichi-ken, Toyohashi-shi')

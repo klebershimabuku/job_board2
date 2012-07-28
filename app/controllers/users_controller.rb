@@ -8,10 +8,6 @@ class UsersController < ApplicationController
     redirect_to root_path if current_user && current_user.sign_in_count > 1
   end
 
-  def index
-    @users = User.paginate(page: params[:page])
-  end
-
   def show
     @user = User.find(params[:id], :include => [:contact_info, :posts])
   end

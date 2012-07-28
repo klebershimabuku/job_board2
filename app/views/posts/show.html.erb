@@ -9,27 +9,30 @@
       <div class='row'>
 
         <div class='span9'>
-          <%= simple_format(@post.description) %>
+          <%= simple_format(m(@post.description)) %>
 
           <% if @post.user.contact_info.present? %>
           <hr />
           <h3><%= @post.user.contact_info.title %></h3>
-          <%= simple_format(@post.user.contact_info.description) %>
+          <%= simple_format(auto_link(@post.user.contact_info.description)) %>
           <% end %>
 
           <%= render 'manager_buttons', collection: @post %>
-          <p><%= link_to 'Retornar à página principal de anúncios', posts_path %></p>
+          
+          <hr>
+          <p><%= link_to '← Retornar à página principal de anúncios', posts_path %></p>
         </div>
 
         <!-- sidebar -->
         <div class='span3'>
           <h4>TAGS</h4>
-          <ul class='taglist-vertical'>
+          <br>
+          <ul class='taglist-vertical tags'>
             <% @post.tags.split(',').flatten.sort.each do |tag| %>
             <li><%= link_to tag, tags_filter_post_path(tag) %></li>
             <% end %>
           </ul>
-          <span class='created_at'>criado <%= timeago_tag @post.created_at, nojs: true, limite: 10.days.ago %></span>
+          <span class='created_at'>publicado <%= timeago_tag @post.published_at, nojs: true, limite: 10.days.ago %></span>
         </div>
         <!-- end sidebar -->
 

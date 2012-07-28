@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   before_filter :check_for_contact_information, only: 'new'
 
   def index
-    @posts = Post.approved
+    @posts = Post.published
   end
 
   def new
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
   end
 
   def tags
-    @posts = Post.approved_filter_by_tag(params[:tags])
+    @posts = Post.published_filter_by_tag(params[:tags])
   end
 
   def successful_submitted; end
@@ -45,7 +45,9 @@ class PostsController < ApplicationController
   def suspend_alert; end
 
   def suspend
-    redirect_to post_path(@post), alert: 'Anúncio suspenso com sucesso.' if @post.suspend!
+    if @post.suspend!
+      redirect_to post_path(@post), alert: 'Anúncio suspenso com sucesso.' 
+    end
   end
 
   protected

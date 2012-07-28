@@ -1,0 +1,8 @@
+pt-BR:
+  views:
+    pagination:
+      first: "&#8592; Primeira"
+      last: "Última &#8594;"
+      previous: "&#8592; Anteriores"
+      next: "Próximos &#8594;"
+      truncate: "..."

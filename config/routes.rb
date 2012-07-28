@@ -1,4 +1,6 @@
 JobBoard2::Application.routes.draw do
+  ActiveAdmin.routes(self)
+
   root to: "static_pages#home"
   
   devise_for :users, :path_prefix => 'd', :controllers => { :registrations => "registrations" }, :path_names => { 
@@ -16,7 +18,7 @@ JobBoard2::Application.routes.draw do
     end
     member do 
       get :suspend_alert, as: 'suspend_alert'
-      post :suspend, as: 'suspend'
+      get :suspend, as: 'suspend'
     end
   end
   get 'posts/tags/:tags' => 'posts#tags', as: 'tags_filter_post'

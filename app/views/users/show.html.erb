@@ -9,9 +9,9 @@
       <p>Membro desde: <%= @user.created_at.strftime('%d/%m/%Y') %></p>
     </section>
 
-    <% if @user.role == 'announcer' %>
+    <% if @user.role == 'publisher' %>
 
-      <%= render 'show_announcer', collection: @user %>
+      <%= render 'show_publisher', collection: @user %>
 
     <% end %>
 
