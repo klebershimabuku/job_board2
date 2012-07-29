@@ -1,5 +1,87 @@
-<% provide(:title, 'Sobre') %>
-<h1>Sobre</h1>
-<p>Este é um projeto que surgiu em meados de 2008 com o objetivo de agrupar e organizar as diversas vagas de trabalho
-	oferecidas aos brasileiros residentes no Japão.</p>
-<p>Possibilita à empresas publicarem diretamente anúncios de empregos.</p>
+<% 
+@title = "Sobre"
+provide(:title, @title) 
+%>
+<div class='page-header'>
+  <h1><%= "Conheça um pouco mais sobre o ShigotoDoko" %></h1>
+</div>
+
+<div class='page-about'>
+  
+<p><b>ShigotoDOKO</b> nome que buscamos ir de encontro com a "procura por trabalho". São duas palavras rapidamente aprendidas pelos dekasseguis.</p>
+
+<p>Iniciou-se um trabalho de desenvolvimento nos meados de 2008, pouco antes do auge da crise econômica mundial desencadeada neste mesmo ano.</p>
+
+<p>O objetivo deste projeto sempre foi desde o início tornar fácil a maneira de procurar por um trabalho no Japão. Apresentamos de maneira
+organizada diversas oportunidades de trabalho dentre uma enorme variedade de áreas.</p>
+
+<p>Para as empresas mais comumente conhecidas e chamadas por empreiteiras damos a oportunidade de estar apresentando aos nossos visitantes e
+usuários, suas melhores e mais recentes ofertas de empregos no Japão.</p>
+
+<p>Aos nossos usuários (visitantes que se cadastraram no site) criamos a possibilidade de deixar registrado em nossa memória, um Currículum*
+que estará facilmente acessível pelas diversas empresas que buscam contratar para preencher determinadas posições.</p>
+
+<p>Realizamos parcerias específicas com sites pré-selecionados visando aumentar a visibilidade das informações aqui disponibizadas
+ao passo que as mesmas apresentem condições de melhorar a experiência de nossos usuários e visitantes.</p>
+
+<p>Temos neste momento parcerias realizadas com o Lingua Japonesa - site especializado em explorar o idioma japonês de forma simples e divertida.
+Dicionario.jp o maior dicionário de japonês disponível na lingua portuguesa. Com os mais variados termos utilizados no dia-a-dia do Japão e atualizado frequentemente. 
+E nossa mais recente parceria com o Batata.jp - serviço inovador que promete sacudir o comércio eletrônico no Japão, comparando preços de diversas lojas,
+dos mais variados ramos e trazendo sempre os menores preços à toda comunidade.</p>
+
+<p>Estamos sempre abertos à novas parcerias. Caso esteja interessado, entre em contato conosco.</p>
+
+<p>Gostariamos de informar que todos os anúncios aqui veiculados são devidamente pré-analisados e possuem a devida autorização da empresa responsável.</p>
+
+<p>Todo este trabalho exige muita dedicação e despende muito de nosso tempo, porém, o fazemos com carinho, boa vontade e não cobramos absolutamente nada por isso.</p>
+
+<p>Talvez agora você esteja se perguntando - O que ganhamos então? - Ganhamos a satisfação de poder ajudar pessoas e empresas a se encontrarem e assim termos
+uma pequena mas importante partipação na economia do Japão.</p>
+
+<p>Aproveitamos para deixar registrado aqui, algumas datas que consideramos importantes.</p>
+
+<ulL>
+<li>29 de Setembro de 2008	Lançamento oficial do ShigotoDOKO.</li>
+<li>06 de Fevereiro de 2009	Primeira grande atualização</li>
+<li>19 de Março de 2011	Segunda grande atualização</li>
+</ul>
+
+<h3>Webmasters</h3>
+<p>Administradores de blogs e sites estão autorizados a adicionar o Twitter Ticker do ShigotoDoko.</p>
+<p>Para isso, basta adicionar ao código HTML, o seguinte trecho de código:</p>
+<pre>
+&lt;script charset="utf-8" src="http://widgets.twimg.com/j/2/widget.js"></script>
+  &lt;script>
+    new TWTR.Widget({
+      version: 2,
+      type: 'profile',
+      rpp: 10,
+      interval: 30000,
+      width: 300,
+      height: 350,
+      theme: {
+        shell: {
+          background: '#336699',
+          color: '#fafaf7'
+        },
+        tweets: {
+          background: '#ffffff',
+          color: '#050505',
+          links: '#336699'
+        }
+      },
+      features: {
+        scrollbar: true,
+        loop: true,
+        live: true,
+        behavior: 'default'
+      }
+  }).render().setUser('shigotodoko').start();
+&lt;/script>
+</pre>
+<h3>Quem está por trás do ShigotoDOKO?</h3>
+
+<p>Kleber Shimabuku (<%= author_age %>), brasileiro, formado em Técnico de Informática, é desenvolvedor backend em São Paulo.</p>
+
+<p>Gostaria de se juntar à mim e ajudar neste projeto grandioso? Entre em contato e veremos o que pode ser feito.</p>
+</div>

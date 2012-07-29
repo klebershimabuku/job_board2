@@ -1,3 +1,25 @@
 <% provide(:title, 'Ajuda') %>
-<h1>Ajuda</h1>
+<div class='page-header'>
+  <h1>Dúvidas mais frequentes</h1>
+</div>
 <p>Está precisando de ajuda? Aqui você irá encontrar as dúvidas mais frequentes dos usuários.</p>
+<p><b>Atenção:</b> Esta página encontra-se atualmente em desenvolvimento e deverá ser atualizada ao passo que 
+as dúvidas forem surgindo.</p>
+
+<br>
+<div class='center'>
+  <h3>Por favor utilize o formulário abaixo para enviar suas dúvidas:<h3>
+</div>
+<br>
+<br>
+
+<%= simple_form_for @message, :url => contact_path do |f| %>
+      <%= f.input :name, label: "Nome" , input_html: { size: 40, maxlength: 30 } %>    
+      <%= f.input :email %>
+      <%= f.input :subject, label: "Assunto", input_html: { size: 10 } %>
+      <%= f.input :body, label: "Mensagem", as: 'text', input_html: { rows: 10 } %>
+
+  <fieldset class="actions">
+    <%= f.submit "Enviar", class: 'btn btn-large btn-primary' %>
+  </fieldset>
+<% end %>

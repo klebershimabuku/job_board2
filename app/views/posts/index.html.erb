@@ -1,47 +1,6 @@
 <% provide(:title, 'Empregos no Japão') %>
+<% provide(:description, "Anúncios de empregos no Japão para latino-americanos residentes no país ou não residentes que possuem interesse em trabalhar no Japão. ") %>
+<% provide(:keywords, "empregos no japao, trabalho no japão, enpregos, emprego no japão, emprego japão, japão empregos, empregos no japão, japão trabalho, trabalho no japão, empregos no jp, trabalhar japão, trabalhar no japão, classificados no japão, serviço no japão, vagas no japão, serviços no japão, trabalho no japão para brasileiros, trabalhe no japão, empregos no japão #{Time.now.strftime('%Y')}, anuncios no japao, empregos") %>
 <div class='row'>
-
-  <div class='span9'>
-
-    <ul id='posts'>
-      <% @posts.each do |post| %>
-      <li>
-
-        <div class='row-fluid'>
-
-          <div class='span9 offset0'>
-            <h3><%= link_to post.title, post_path(post) %></h3>
-            <p class='location'><%= post.location %></p>
-            <p>Tags: 
-              <%= link_tags(post.tags) %>
-            </p>
-          </div>
-
-          <div class='span3 offset10'>
-            <p class='created_at'><%= timeago_tag post.published_at %></p>
-            <p><span class='company_name label label-company-name'><%= post.user.contact_info.title %></span></p>
-          </div>
-
-        </div>
-
-      </li>
-      <% end %>
-    </ul>
-
-  </div>
-
-  <div class='span3'>
-
-    <h3>TAGS</h3>
-    <h4>Filtre anúncios por região</h4>
-    <br>
-    <ul class='taglist-vertical tags tags-alt'>
-    <% @posts.available_tags.each do |tag| %>
-      <li><%= link_to tag, tags_filter_post_path(tag) %></li>
-    <% end %>
-    </ul>
-    <hr />
-    <iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/follow_button.1340179658.html#_=1341885896758&amp;id=twitter-widget-26&amp;lang=pt&amp;screen_name=shigotodoko&amp;show_count=true&amp;show_screen_name=true&amp;size=m" class="twitter-follow-button" style="width: 238px; height: 20px; " title="Twitter Follow Button"></iframe>
-  </div>
-
+<%= render 'posts' %>
 </div>

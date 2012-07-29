@@ -1,19 +1,14 @@
 <% title = "Vagas em #{params[:tags].capitalize}" %>
 <% provide(:title, "#{title}") %>
-<h1><%= title %></h1>
 
 <% if @posts.any? %>
-
-  <ul>
-  <% @posts.each do |post| %>
-    <li><%= post.title %></li>
-  <% end %>
-  </ul>
-
+<h3><%= title %></h3>
+<hr>
+<div class='row'>
+<%= render 'posts' %>
+</div>
 <% else %>
-
   <h3>Nenhum resultado encontrado para <%= params[:tags] %></h3>
-
 <% end %>
 
-<p><%= link_to 'Retornar à página principal de anúncios', posts_path %></p>
+<p><%= link_to '← Retornar à página principal de anúncios', posts_path %></p>

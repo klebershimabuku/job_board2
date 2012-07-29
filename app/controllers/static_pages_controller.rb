@@ -1,5 +1,7 @@
 class StaticPagesController < ApplicationController
-  def help; end
+  def help
+    @message = Message.new
+  end
 
   def about; end
 end

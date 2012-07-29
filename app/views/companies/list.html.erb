@@ -2,6 +2,8 @@
 @province = params[:name].capitalize
 @title = "Empreiteiras em #{@province}"
 provide(:title, @title) 
+provide(:description, @title)
+provide(:keywords, @title)
 %>
 
 <div class='row'>

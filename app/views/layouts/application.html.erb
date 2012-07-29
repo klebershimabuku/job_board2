@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
   <title><%= full_title(yield(:title)) %></title>
+  <meta name="description" content="<%= yield(:description) || "Vagas de Empregos no Japao, Empreiteiras, Currículums, Artigos e mais.. " %>"/>
+  <meta name="keywords" content="<%= yield(:keywords) || "empregos no japao, trabalho no japão, enpregos, emprego no japão, emprego japão, japão empregos, empregos no japão, japão trabalho, trabalho no japão, empregos no jp, trabalhar japão, trabalhar no japão, classificados no japão, serviço no japão, vagas no japão, serviços no japão, trabalho no japão para brasileiros, trabalhe no japão, empregos no japão #{Time.now.strftime('%Y')}, anuncios no japao, empregos, empreiteiras no japão, empreiteira no japao" %>"/>
+  <meta name="google-site-verification" content="culxN0GN5f_GZnPGAr0AJ1QyJxfKXNRyty9-9fQFtGA" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
   <%= timeago_script_tag %>
   <%= csrf_meta_tags %>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <%= render 'layouts/ltie9' %>
   <%= render 'layouts/ga' %>
 </head>
 <body>
+<%= render 'layouts/fb_box_script'%>
 <%= render 'layouts/header' %>
 <div class="container">
   <%= render 'layouts/flash_message' %>

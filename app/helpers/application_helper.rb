@@ -22,6 +22,11 @@ module ApplicationHelper
   def admin?
     current_user.role == 'admin'
   end
+  
+  def author_age
+    birthday = Date.strptime("{ 1982, 9, 11 }", "{ %Y, %m, %d }")
+    Date.today.year - birthday.year
+  end
 
   def special_flash(value)
     f = '--'

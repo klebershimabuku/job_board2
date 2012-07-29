@@ -241,6 +241,16 @@ aside {
   margin-right: 10px;
 }
 
+/* Page:About */
+.page-about {
+  h3 {
+    margin-top: 50px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #EEE;
+    margin-bottom: 20px;
+  }
+}
+
 /* users index */
 
 .users {
@@ -386,6 +396,12 @@ label.collection_check_boxes {
   margin: 0;
   vertical-align: -2px;
   margin-left: 2px;
+}
+
+/* Facebook Box - Posts (sidebar)
+#facebook {
+  margin-top: 50px;
+  padding-top: 50px;
 }
 /* forms */
 

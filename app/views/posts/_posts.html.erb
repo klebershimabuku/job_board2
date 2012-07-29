@@ -1,0 +1,42 @@
+<div class='span9'>
+  <ul id='posts'>
+    <% @posts.each do |post| %>
+    <li>
+      <div class='row-fluid'>
+        <div class='span9 offset0'>
+          <h3><%= link_to post.title, post_path(post) %></h3>
+          <p class='location'><%= post.location %></p>
+          <p>Tags: 
+            <%= link_tags(post.tags) %>
+          </p>
+        </div>
+
+        <div class='span3 offset10'>
+          <p class='created_at'><%= timeago_tag post.published_at %></p>
+          <p><span class='company_name label label-company-name'><%= post.user.contact_info.title %></span></p>
+        </div>
+
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class='span3'>
+  <h3>TAGS</h3>
+  <h4>Filtre anúncios por região</h4>
+  <br>
+  <ul class='taglist-vertical tags tags-alt'>
+  <% @posts.available_tags.each do |tag| %>
+    <li><%= link_to tag, tags_filter_post_path(tag) %></li>
+  <% end %>
+  </ul>
+  <div id="facebook">
+    <h3>Curta nossa página no Facebook</h3><br>
+    <script src="http://connect.facebook.net/pt_BR/all.js#xfbml=1"></script><fb:like-box href="http://www.facebook.com/shigotodoko" width="210" height="290" show_faces="true" stream="false" header="false" connections="10"></fb:like-box>
+  </div>
+  <hr />
+  <h3>Siga-nos pelo Twitter</h3><br>
+  <iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/follow_button.1340179658.html#_=1341885896758&amp;id=twitter-widget-26&amp;lang=pt&amp;screen_name=shigotodoko&amp;show_count=true&amp;show_screen_name=true&amp;size=m" class="twitter-follow-button" style="width: 238px; height: 20px; " title="Twitter Follow Button"></iframe>
+
+</div>
