@@ -152,7 +152,7 @@ GEM
       net-ssh (>= 1.99.1)
     nokogiri (1.5.4)
     orm_adapter (0.0.7)
-    pg (0.13.2)
+    pg (0.14.0)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -288,7 +288,7 @@ DEPENDENCIES
   guard-spork (= 0.3.2)
   jquery-rails
   kaminari (= 0.13.0)
-  pg
+  pg (= 0.14.0)
   quiet_assets
   rails (= 3.2.3)
   rails-timeago
