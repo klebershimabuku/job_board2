@@ -18,6 +18,7 @@ gem 'activeadmin', '0.4.4'
 gem 'rdiscount', '1.6.8'
 gem 'rails_autolink', '1.0.7'
 gem 'capistrano'
+gem 'therubyracer'
 
 group :developement, :test do 
   gem 'pg'
@@ -46,7 +47,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg'
+  gem 'pg', '0.14.0'
 end
 
 group :assets do
