@@ -7,8 +7,10 @@ JobBoard2::Application.routes.draw do
                                             :sign_up => "register", 
                                             :sign_in => "login", 
                                             :sign_out => "logout" 
+
+
                                           }
-  resources :users do 
+ resources :users do 
     resources :contact_infos
   end
   

@@ -20,6 +20,8 @@ coverage
 
 # Ignore development config
 /config/environments/development.rb
+/config/deploy.rb
+/config/deploy/*.rb
 
 /lib/tasks/import_users.rake
 /lib/tasks/import_companies.rake

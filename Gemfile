@@ -17,6 +17,7 @@ gem 'yajl-ruby'
 gem 'activeadmin', '0.4.4'
 gem 'rdiscount', '1.6.8'
 gem 'rails_autolink', '1.0.7'
+gem 'capistrano'
 
 group :developement, :test do 
   gem 'pg'
