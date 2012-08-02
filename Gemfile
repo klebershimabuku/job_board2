@@ -21,7 +21,7 @@ gem 'capistrano'
 gem 'therubyracer'
 
 group :developement, :test do 
-  gem 'pg'
+  gem 'pg', '0.14.0'
   gem 'rspec-rails', '2.10.1'
   gem 'guard-rspec', '1.1.0'
   gem 'simplecov', '0.6.1', :require => false
