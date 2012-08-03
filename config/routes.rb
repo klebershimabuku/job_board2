@@ -1,5 +1,5 @@
 JobBoard2::Application.routes.draw do
-  ActiveAdmin.routes(self)
+  #ActiveAdmin.routes(self)
 
   root to: "posts#index"
   
