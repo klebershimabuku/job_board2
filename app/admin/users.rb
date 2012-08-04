@@ -20,7 +20,7 @@ ActiveAdmin.register User do
   
   member_action :promote_to_announcer, method: 'get' do
     user = User.find(params[:id])
-    user.promote_to_announcer!
+    user.promote_to_publisher!
     flash[:notice] = 'Usuário promovido à anunciante!'
     redirect_to admin_user_path(user)
   end
