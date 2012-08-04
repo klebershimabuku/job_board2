@@ -19,6 +19,7 @@ gem 'rdiscount', '1.6.8'
 gem 'rails_autolink', '1.0.7'
 gem 'capistrano'
 gem 'therubyracer'
+gem 'nokogiri'
 
 group :developement, :test do 
   gem 'pg', '0.14.0'

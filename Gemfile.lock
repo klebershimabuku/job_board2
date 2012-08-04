@@ -288,6 +288,7 @@ DEPENDENCIES
   guard-spork (= 0.3.2)
   jquery-rails
   kaminari (= 0.13.0)
+  nokogiri
   pg (= 0.14.0)
   quiet_assets
   rails (= 3.2.3)
