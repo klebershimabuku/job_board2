@@ -483,6 +483,17 @@ footer {
   }
 }  
 
+.error_500 {
+  margin-top: 30em;
+  margin-bottom: 30em;
+  
+  .home {
+    margin: 0 auto;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
 /* miscellaneous */
 
 .debug_dump {
