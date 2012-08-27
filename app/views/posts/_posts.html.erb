@@ -1,4 +1,4 @@
-<div class='span9'>
+<div class='span8'>
   <ul id='posts'>
     <% @posts.each do |post| %>
     <li>
@@ -22,7 +22,7 @@
   </ul>
 </div>
 
-<div class='span3'>
+<div class='span4'>
   <h3>TAGS</h3>
   <h4>Filtre anúncios por região</h4>
   <br>
@@ -31,6 +31,19 @@
     <li><%= link_to tag, tags_filter_post_path(tag) %></li>
   <% end %>
   </ul>
+
+  <script type="text/javascript"><!--
+  google_ad_client = "ca-pub-1679261120441100";
+  /* 300x250 main jobs, right sidebar */
+  google_ad_slot = "7216256845";
+  google_ad_width = 300;
+  google_ad_height = 250;
+  //-->
+  </script>
+  <script type="text/javascript"
+  src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  </script>
+  
   <div id="facebook">
     <h3>Curta nossa página no Facebook</h3><br>
     <script src="http://connect.facebook.net/pt_BR/all.js#xfbml=1"></script><fb:like-box href="http://www.facebook.com/shigotodoko" width="210" height="290" show_faces="true" stream="false" header="false" connections="10"></fb:like-box>
@@ -38,5 +51,7 @@
   <hr />
   <h3>Siga-nos pelo Twitter</h3><br>
   <iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/follow_button.1340179658.html#_=1341885896758&amp;id=twitter-widget-26&amp;lang=pt&amp;screen_name=shigotodoko&amp;show_count=true&amp;show_screen_name=true&amp;size=m" class="twitter-follow-button" style="width: 238px; height: 20px; " title="Twitter Follow Button"></iframe>
+  
+  
 
 </div>

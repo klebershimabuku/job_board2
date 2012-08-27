@@ -106,6 +106,16 @@ p {
   }
 }
 
+
+.ad_header {
+  width: 738px;
+  heigth: 100px;
+  background-color: #EEE;
+  margin:0 auto;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
 /* sidebar */
 
 aside {
@@ -444,6 +454,7 @@ input, textarea, select, .uneditable-input {
 div.share {
   padding-top: 20px;
   border-top: 1px solid #CCC;
+  margin-bottom: 20px;
 }
 div.share, .fb-like, .twitter {
 	margin-top: 8px;

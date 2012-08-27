@@ -5,12 +5,29 @@
 <div class='row'>
   <div class='post'>
     <div class='span12'>
+
+      <div class='ad_header'>
+  			<script type="text/javascript"><!--
+  			google_ad_client = "ca-pub-1679261120441100";
+  			/* 728x90 header-job-internals */
+  			google_ad_slot = "4600877081";
+  			google_ad_width = 728;
+  			google_ad_height = 90;
+  			//-->
+  			</script>
+  			<script type="text/javascript"
+  			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+  			</script>
+      </div>
+			
+
       <p><%= @post.location %></p>
       <h1><%= @post.title %></h1>
 
       <div class='row'>
 
-        <div class='span9'>
+        <div class='span8'>
+			
           <%= simple_format(m(@post.description)) %>
 
           <% if @post.user.contact_info.present? %>
@@ -21,12 +38,11 @@
 
           <%= render 'manager_buttons', collection: @post %>
           
-          <hr>
           <p><%= link_to '← Retornar à página principal de anúncios', posts_path %></p>
         </div>
 
         <!-- sidebar -->
-        <div class='span3'>
+        <div class='span4'>
           <h4>TAGS</h4>
           <br>
           <ul class='taglist-vertical tags'>
@@ -41,6 +57,19 @@
             <div class="fb-like" data-href="http://www.shigotodoko.com<%= url_for(@post) %>" data-send="false" data-layout="button_count" data-width="105" data-show-faces="true"></div>
             <a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="shigotodoko" data-url="http://www.shigotodoko.com<%= url_for(@post) %>" data-lang="en">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
           </div>
+          
+          <script type="text/javascript"><!--
+          google_ad_client = "ca-pub-1679261120441100";
+          /* 336x280 job internals sidebar */
+          google_ad_slot = "8362671732";
+          google_ad_width = 336;
+          google_ad_height = 280;
+          //-->
+          </script>
+          <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+          </script>
+          
         </div>
         <!-- end sidebar -->
 
