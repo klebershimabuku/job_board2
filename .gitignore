@@ -29,3 +29,4 @@ coverage
 /db/companies.json
 /db/announcers.json
 /db/published_jobs.json
+/db
