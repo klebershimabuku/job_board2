@@ -53,18 +53,20 @@ describe "PostPages" do
     context 'with data present' do 
 
       context "when there's one tag" do 
+
         before do 
+
           @title = 'Vagas em Aichi-ken'
-          Post.create!(title: 'Job in Aichi', 
-                       description: 'anytext', 
-                       status: 'published',
-                       location: 'aichi-ken')
+
+          contact_info = FactoryGirl.create(:contact_info)
+          user = FactoryGirl.create(:user)
+          post = FactoryGirl.create(:post, title: 'Job in Aichi', description: 'anytext', status: 'published', location: 'aichi-ken', user: user)
 
 
           visit tags_filter_post_path('aichi-ken')
         end
         it { should have_selector('title', text: @title) }
-        it { should have_selector('h1', text: @title) }
+        it { should have_selector('h3', text: @title) }
 
         it 'lists each filtered job by tag' do
           Post.published_filter_by_tag('aichi-ken').each do |p|
@@ -79,20 +81,18 @@ describe "PostPages" do
 
           @title = 'Vagas em Aichi-ken'
 
-          Post.create!(title: 'Job in Aichi', 
-                       description: 'anytext', 
-                       status: 'published',
-                       location: 'aichi-ken,shizuoka-ken')
+          contact_info = FactoryGirl.create(:contact_info)
 
-          Post.create!(title: 'Job in Yokohama-shi', 
-                       description: 'anytext',
-                       status: 'published',
-                       location: 'gunma-ken,osaka-fu,aichi-ken')
+          user = FactoryGirl.create(:user)
+          
+          post1 = FactoryGirl.create(:post, title: 'Job in Aichi', description: 'anytext', status: 'published', location: 'aichi-ken', user: user)
+
+          post2 = FactoryGirl.create(:post, title: 'Job in Yokohama-shi', description: 'anytext', status: 'published', location: 'gunma-ken,osaka-fu,aichi-ken')
 
           visit tags_filter_post_path(@filter)
         end
         it { should have_selector('title', text: @title) }
-        it { should have_selector('h1', text: @title) }
+        it { should have_selector('h3', text: @title) }
 
         it 'lists each filtered job by tag' do
           Post.published_filter_by_tag('aichi-ken').each do |p|
@@ -109,7 +109,7 @@ describe "PostPages" do
         visit tags_filter_post_path(@tag)
       end
       it { should have_selector('title', text: @title) }
-      it { should have_selector('h1', text: @title) }
+      it { should have_selector('h3', text: @title) }
       it { should have_content("Nenhum resultado encontrado para #{@tag}") }
       it { should have_link('Retornar à página principal de anúncios', href: posts_path)}
     end

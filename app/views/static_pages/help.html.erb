@@ -13,7 +13,7 @@ as dúvidas forem surgindo.</p>
 <br>
 <br>
 
-<%= simple_form_for @message, :url => contact_path do |f| %>
+<%= simple_form_for @message, :url => contato_path do |f| %>
       <%= f.input :name, label: "Nome" , input_html: { size: 40, maxlength: 30 } %>    
       <%= f.input :email %>
       <%= f.input :subject, label: "Assunto", input_html: { size: 10 } %>

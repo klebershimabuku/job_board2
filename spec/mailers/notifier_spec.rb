@@ -5,7 +5,7 @@ describe Notifier do
   describe 'warning about a new post on the system' do
     post = FactoryGirl.create(:post)
     
-    let(:email) { Notifier.new_post_submitted(post, 'admin@shigotodoko.com') }
+    let(:email) { Notifier.new_post_submitted(post) }
 
     it 'should send the email to the right email address' do 
       email.subject.should match post.title

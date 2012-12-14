@@ -15,7 +15,7 @@
 /tmp
 
 # Ignore config file
-database.yml
+# database.yml
 coverage
 
 # Ignore development config
@@ -25,6 +25,10 @@ coverage
 
 /lib/tasks/import_users.rake
 /lib/tasks/import_companies.rake
+
+/config/initializers/setup_mail.rb
+
+# Seed
 /db/users.json
 /db/companies.json
 /db/announcers.json

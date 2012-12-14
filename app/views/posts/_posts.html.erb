@@ -13,7 +13,7 @@
 
         <div class='span3 offset10'>
           <p class='created_at'><%= timeago_tag post.published_at %></p>
-          <p><span class='company_name label label-company-name'><%= post.user.contact_info.title %></span></p>
+          <p><span class='company_name label label-company-name'><%= post.user.contact_info.try(:title) %></span></p>
         </div>
 
       </div>

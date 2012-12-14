@@ -8,7 +8,8 @@
 <%= render 'posts' %>
 </div>
 <% else %>
-  <h3>Nenhum resultado encontrado para <%= params[:tags] %></h3>
+  <h3><%= title %></h3>
+  <strong>Nenhum resultado encontrado para <%= params[:tags] %></strong>
 <% end %>
 
 <p><%= link_to '← Retornar à página principal de anúncios', posts_path %></p>

@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 describe "StaticPages" do
@@ -17,7 +19,7 @@ describe "StaticPages" do
   describe "Help page" do
     before(:each) { visit ajuda_path }
     it "should have the content 'Ajuda' " do
-      should have_selector('h1', :text => 'Ajuda')
+      should have_selector('h1', :text => 'Dúvidas mais frequentes')
     end
     it "should have the right title" do
       should have_selector('title', :text => full_title('Ajuda') )
@@ -27,7 +29,7 @@ describe "StaticPages" do
   describe "About page" do
     before(:each) { visit sobre_path }
     it "should have the content 'Sobre'" do
-      should have_selector('h1', :text => 'Sobre')
+      should have_selector('h1', :text => 'Conheça um pouco mais sobre o ShigotoDoko')
     end
     it "should have the right title" do
       should have_selector('title', :text => full_title('Sobre') )

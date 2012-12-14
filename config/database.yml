@@ -1,0 +1,14 @@
+development: &common
+  adapter: postgresql
+  database: job_board2_development
+  username: postgres
+  password: 
+  host: localhost
+
+test:
+  <<: *common
+  database: job_board2_test
+
+production:
+  <<: *common
+  database: job_board2_production
