@@ -1,16 +1,14 @@
 language: ruby
 rvm:
-  - 1.9.2
   - 1.9.3
 env:
   - DB=postgresql
 script: 
   - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - bundle exec rake db:test:prepare
+  - bundle exec rake db:test:prepare --trace
   - bundle exec rspec spec/
 before_script:
   - psql -c 'create database job_board2_test' -U postgres
-  - mv /config/initializers/active_admin.rb /config/initializers/active_admin.txt
 bundler_args: --binstubs=./bundler_stubs
 notifications:
   recipients:
