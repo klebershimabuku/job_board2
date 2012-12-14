@@ -69,5 +69,9 @@ module JobBoard2
     config.assets.initialize_on_compile = false
 
     config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+    config.after_initialize do
+      require 'active_admin'
+    end    
   end
 end
