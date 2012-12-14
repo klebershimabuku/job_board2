@@ -10,6 +10,7 @@ script:
   - bundle exec rspec spec/
 before_script:
   - psql -c 'create database job_board2_test' -U postgres
+  - mv /config/initializers/active_admin.rb /config/initializers/active_admin.txt
 bundler_args: --binstubs=./bundler_stubs
 notifications:
   recipients:
