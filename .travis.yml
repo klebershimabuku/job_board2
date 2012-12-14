@@ -3,14 +3,15 @@ rvm:
   - 1.9.2
   - 1.9.3
 env:
-  - DB=sqlite
-  - DB=mysql
   - DB=postgresql
 script: 
   - RAILS_ENV=test rake db:test:prepare --trace
   - bundle exec rake db:test:prepare
   - bundle exec rspec spec/
 before_script:
-  - mysql -e 'create database my_app_test'
-  - psql -c 'create database my_app_test' -U postgres
+  - psql -c 'create database job_board2_test' -U postgres
 bundler_args: --binstubs=./bundler_stubs
+notifications:
+  recipients:
+    - klebershimabuku@gmail.com
+    - marcelomogami@gmail.com

@@ -1,5 +1,7 @@
 # Job Board 2
 
+[![Build Status](https://travis-ci.org/klebershimabuku/job_board2.png?branch=master)](https://travis-ci.org/klebershimabuku/job_board2)
+
 **Job board 2** uses Ruby on Rails 3.2.3 version
 
 It's a popular job board in Japan known as **ShigotoDoko**
