@@ -101,7 +101,6 @@ describe UsersController do
             put :update, id: user
           end
           it { response.should redirect_to user_path(user) }
-          it { response.should_not redirect_to new_user_session_path }
         end
 
         context 'with invalid information' do
@@ -121,7 +120,6 @@ describe UsersController do
           put :update, id: other_user
         end
         it { response.should redirect_to root_path }
-        it { response.should_not redirect_to user_path(other_user) }
       end
 
     end
@@ -130,9 +128,6 @@ describe UsersController do
       before { put :update, id: user }
       it 'redirects to root' do
         response.should redirect_to root_path
-      end
-      it 'should not redirect to the profile page' do
-        response.should_not redirect_to user_path(user)
       end
     end
   end
