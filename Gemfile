@@ -14,7 +14,7 @@ gem 'rails-timeago'
 gem 'simple_form'
 gem 'whenever', :require => false
 gem 'yajl-ruby'
-gem 'activeadmin', '0.4.4'
+gem 'activeadmin', '0.5.1'
 gem 'rdiscount', '1.6.8'
 gem 'rails_autolink', '1.0.7'
 gem 'capistrano'
