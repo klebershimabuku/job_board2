@@ -28,7 +28,7 @@ group :developement, :test do
   gem 'simplecov', '0.6.1', :require => false
   gem 'annotate', '~> 2.4.1.beta'
   gem 'quiet_assets'
-  gem 'test-unit', :require => "test/unit"
+  gem 'test-unit', :require => 'test/unit'
 end
 
 group :test do 
