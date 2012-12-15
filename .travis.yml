@@ -4,6 +4,8 @@ rvm:
 env:
   - DB=postgresql
 script: 
+  - RAILS_ENV=test bundle exec rake db:migrate --trace
+  - bundle exec rake db:test:prepare --trace
   - bundle exec rspec spec/
 before_script:
   - psql -c 'create database job_board2_test' -U postgres
