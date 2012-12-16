@@ -15,7 +15,7 @@
 /tmp
 
 # Ignore config file
-database.yml
+/config/database.yml
 coverage
 
 # Ignore development config
