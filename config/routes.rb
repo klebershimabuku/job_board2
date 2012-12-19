@@ -17,6 +17,7 @@ JobBoard2::Application.routes.draw do
   resources :posts do
     collection do
       get :successful_submitted, as: 'successful_submitted'
+      get :feeds, as: 'feeds', defaults: { format: 'rss' }
     end
     member do 
       get :suspend_alert, as: 'suspend_alert'

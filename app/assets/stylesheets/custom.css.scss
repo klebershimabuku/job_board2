@@ -251,6 +251,10 @@ aside {
   margin-right: 10px;
 }
 
+.column-header {
+  background-color: #2B8FD9;
+}
+
 /* Page:About */
 .page-about {
   h3 {
@@ -408,10 +412,16 @@ label.collection_check_boxes {
   margin-left: 2px;
 }
 
-/* Facebook Box - Posts (sidebar)
-#facebook {
-  margin-top: 50px;
-  padding-top: 50px;
+/* Facebook Box - Posts (sidebar) */
+#facebook, #twitter, #feed {
+  margin-top: 10px;
+  padding-top: 20px;
+
+  h3 {
+    background-color: #2B8FD9;
+    color: #FFF;
+    padding: 8px;
+  }
 }
 /* forms */
 

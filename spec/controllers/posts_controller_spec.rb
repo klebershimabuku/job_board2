@@ -11,6 +11,11 @@
       end
     end
 
+    describe 'Feeds' do
+      before { get :feeds, :format => :rss }
+      it { response.should be_successful }
+    end
+
     context '#index' do 
       before { get :index } 
       it { assigns(:posts).should_not be_nil }

@@ -1,7 +1,7 @@
 # encoding: utf-8
 class PostsController < ApplicationController
-  load_and_authorize_resource except: [:index, :show, :new, :create]
-  before_filter :authenticate_user!, except: [:index, :show, :tags]
+  load_and_authorize_resource except: [:index, :show, :new, :create, :feeds]
+  before_filter :authenticate_user!, except: [:index, :show, :tags, :feeds]
   before_filter :find_post, only: [:show, :edit, :update, :suspend, :suspend_alert]
   before_filter :check_for_contact_information, only: 'new'
 
@@ -47,6 +47,15 @@ class PostsController < ApplicationController
   def suspend
     if @post.suspend!
       redirect_to post_path(@post), alert: 'Anúncio suspenso com sucesso.' 
+    end
+  end
+
+  def feeds
+    @posts = Post.all(:select => 'id, title, description, location, status, published_at', :limit => 10)
+    
+    respond_to do |format|
+      format.rss { render layout: false }
+      format.atom { redirect_to posts_feeds_path(:format => :rss), :status => :moved_permanently }
     end
   end
 
