@@ -40,7 +40,7 @@ describe Post do
   
   describe 'new post' do
     before do
-      @post = FactoryGirl.create(:post)
+      @post = FactoryGirl.create(:pending_post)
     end
     it { @post.published_at.should be_nil }
     it { @post.expired_at.should be_nil }
@@ -61,7 +61,7 @@ describe Post do
   
   describe '#publish' do
     before do
-      @post = FactoryGirl.create(:post)
+      @post = FactoryGirl.create(:pending_post)
       @post.publish!
     end
     it { @post.published_at.should_not be_nil }
@@ -70,7 +70,7 @@ describe Post do
 
   describe '#published?' do
     before do
-      @post = FactoryGirl.create(:post)
+      @post = FactoryGirl.create(:pending_post)
       @post.publish!
     end
     it { @post.published?.should be_true }
@@ -79,7 +79,7 @@ describe Post do
   
   describe '#expired?' do
     before do
-      @post = FactoryGirl.create(:post)
+      @post = FactoryGirl.create(:published_post)
       @post.expire!
     end
     it { @post.expired?.should be_true }
@@ -88,7 +88,7 @@ describe Post do
     
   describe '#expire' do
     before do
-      @post = FactoryGirl.create(:post)
+      @post = FactoryGirl.create(:published_post)
       @post.expire!
     end
     it { @post.expired_at.should_not be_nil }
@@ -140,19 +140,19 @@ describe Post do
   end
 
   describe '#set_as_pending' do 
-    let(:post) { FactoryGirl.create(:post) }
+    let(:post) { FactoryGirl.create(:pending_post) }
     it { post.status.should be_eql 'pending' }
   end
 
   describe '#suspend!' do 
-    let(:post) { FactoryGirl.create(:post) }
+    let(:post) { FactoryGirl.create(:pending_post) }
     before { post.suspend! }
     it { post.status.should be_eql 'suspended' }
     it { post.status.should_not be_eql 'pending' }
   end
 
   describe '#suspended?' do 
-    let(:post) { FactoryGirl.create(:post) }
+    let(:post) { FactoryGirl.create(:published_post) }
 
     context 'should be false' do 
       before { post.suspended? }
@@ -166,10 +166,10 @@ describe Post do
   end
 
   describe '.published' do 
-    let(:p1) { FactoryGirl.create(:post, status: 'published') }
-    let(:p2) { FactoryGirl.create(:post, status: 'published') }
-    let(:p3) { FactoryGirl.create(:post, status: 'pending') }
-    let(:p4) { FactoryGirl.create(:post, status: 'published') }
+    let(:p1) { FactoryGirl.create(:published_post) }
+    let(:p2) { FactoryGirl.create(:published_post) }
+    let(:p3) { FactoryGirl.create(:pending_post) }
+    let(:p4) { FactoryGirl.create(:published_post) }
     it { Post.published.should_not include(p3) }
     it { Post.published.should include(p1,p2,p4) }
   end
@@ -177,9 +177,9 @@ describe Post do
   describe 'scope#pendings' do
     before do
       3.times do 
-        FactoryGirl.create(:post, status: 'pending')
+        FactoryGirl.create(:pending_post)
       end
-      FactoryGirl.create(:post, status: 'published')
+      FactoryGirl.create(:published_post)
       @pendings = Post.pendings
     end
     it { @pendings.size.should == 3 }
@@ -188,9 +188,9 @@ describe Post do
   describe 'scope#expireds' do
     before do
       3.times do 
-        FactoryGirl.create(:post, status: 'expired')
+        FactoryGirl.create(:expired_post)
       end
-      FactoryGirl.create(:post, status: 'published')
+      FactoryGirl.create(:published_post)
       @expireds = Post.expireds
     end
     it { @expireds.size.should == 3 }
@@ -199,9 +199,9 @@ describe Post do
   describe 'scope#publisheds' do
     before do
       3.times do 
-        FactoryGirl.create(:post, status: 'published')
+        FactoryGirl.create(:published_post)
       end
-      FactoryGirl.create(:post, status: 'expired')
+      FactoryGirl.create(:expired_post)
       @publisheds = Post.publisheds
     end
     it { @publisheds.size.should == 3 }

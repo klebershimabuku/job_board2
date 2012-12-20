@@ -7,4 +7,5 @@ describe 'RSS Feeds' do
     before { visit '/posts/feeds.rss' }
     it { should have_content('Feeds do ShigotoDoko') }
   end
+
 end

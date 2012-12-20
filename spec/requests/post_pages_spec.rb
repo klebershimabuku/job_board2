@@ -12,9 +12,9 @@ describe "PostPages" do
       user = FactoryGirl.create(:user)
       contact_info = FactoryGirl.create(:contact_info, user_id: user.id)
       
-      FactoryGirl.create(:post, status: 'published', tags: 'aichi-ken', user_id: user.id)
-      FactoryGirl.create(:post, status: 'published', tags: 'gifu-ken', user_id: user.id)
-      FactoryGirl.create(:post, status: 'published  ', tags: 'tochigi-ken,gunma-ken', user_id: user.id)
+      FactoryGirl.create(:published_post, tags: 'aichi-ken', user_id: user.id)
+      FactoryGirl.create(:published_post, tags: 'gifu-ken', user_id: user.id)
+      FactoryGirl.create(:published_post, tags: 'tochigi-ken,gunma-ken', user_id: user.id)
 
       visit posts_path
     end
@@ -38,7 +38,7 @@ describe "PostPages" do
     context 'should not include posts older than 3 months' do 
       before do
         user = FactoryGirl.create(:user)
-        @post = FactoryGirl.create(:post, status: 'published', tags: 'gifu-ken', user_id: user.id, created_at: 4.months.ago)
+        @post = FactoryGirl.create(:published_post, tags: 'gifu-ken', user_id: user.id, created_at: 4.months.ago)
         Post.expire_older_than_3_months
         visit posts_path 
       end
@@ -60,7 +60,7 @@ describe "PostPages" do
 
           contact_info = FactoryGirl.create(:contact_info)
           user = FactoryGirl.create(:user)
-          post = FactoryGirl.create(:post, title: 'Job in Aichi', description: 'anytext', status: 'published', location: 'aichi-ken', user: user)
+          post = FactoryGirl.create(:published_post, title: 'Job in Aichi', description: 'anytext', location: 'aichi-ken', user: user)
 
 
           visit tags_filter_post_path('aichi-ken')
@@ -85,9 +85,9 @@ describe "PostPages" do
 
           user = FactoryGirl.create(:user)
           
-          post1 = FactoryGirl.create(:post, title: 'Job in Aichi', description: 'anytext', status: 'published', location: 'aichi-ken', user: user)
+          post1 = FactoryGirl.create(:published_post, title: 'Job in Aichi', description: 'anytext', location: 'aichi-ken', user: user)
 
-          post2 = FactoryGirl.create(:post, title: 'Job in Yokohama-shi', description: 'anytext', status: 'published', location: 'gunma-ken,osaka-fu,aichi-ken')
+          post2 = FactoryGirl.create(:published_post, title: 'Job in Yokohama-shi', description: 'anytext', location: 'gunma-ken,osaka-fu,aichi-ken')
 
           visit tags_filter_post_path(@filter)
         end
@@ -195,7 +195,7 @@ describe "PostPages" do
   describe "Edit Post Page" do 
     before do 
       @user = FactoryGirl.create(:user, role: 'publisher')
-      @post = FactoryGirl.create(:post, user_id: @user.id)
+      @post = FactoryGirl.create(:published_post, user_id: @user.id)
       visit edit_post_path(@post)
     end
 

@@ -12,11 +12,47 @@ FactoryGirl.define do
     end
   end
 
-  factory :post do
+  factory :published_post, :class => Post do
+    title "Some title"
+    description "Type some text here"
+    location "Shizuoka-ken"
+    status "published"
+    tags 'shizuoka-ken'
+    association :user
+  end
+
+  factory :expired_post, :class => Post do
+    title "Some title"
+    description "Type some text here"
+    location "Shizuoka-ken"
+    status "expired"
+    tags 'shizuoka-ken'
+    association :user
+  end    
+
+  factory :pending_post, :class => Post do
     title "Some title"
     description "Type some text here"
     location "Shizuoka-ken"
     status "pending"
+    tags 'shizuoka-ken'
+    association :user
+  end
+
+  factory :suspended_post, :class => Post do
+    title "Some title"
+    description "Type some text here"
+    location "Shizuoka-ken"
+    status "suspended"
+    tags 'shizuoka-ken'
+    association :user
+  end
+
+  factory :approved_post, :class => Post do
+    title "Some title"
+    description "Type some text here"
+    location "Shizuoka-ken"
+    status "approved"
     tags 'shizuoka-ken'
     association :user
   end

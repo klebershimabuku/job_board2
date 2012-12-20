@@ -3,7 +3,7 @@ require 'spec_helper'
 
 describe Notifier do 
   describe 'warning about a new post on the system' do
-    post = FactoryGirl.create(:post)
+    post = FactoryGirl.create(:pending_post)
     
     let(:email) { Notifier.new_post_submitted(post) }
 

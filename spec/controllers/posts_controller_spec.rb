@@ -12,8 +12,25 @@
     end
 
     describe 'Feeds' do
-      before { get :feeds, :format => :rss }
-      it { response.should be_successful }
+
+      context 'display only published posts' do
+        before do
+          @post1 = Factory(:expired_post)
+          @post2 = Factory(:published_post)
+          @post3 = Factory(:pending_post)
+
+          get :feeds
+        end
+
+        it { assigns(:posts).should =~ [@post2] }
+        it { assigns(:posts).size.should == 1 }
+      end
+
+      context 'accessibity' do
+        before { get :feeds, :format => :rss }
+        it { response.should be_successful }
+      end
+
     end
 
     context '#index' do 
@@ -23,15 +40,23 @@
     end
 
     context '#show' do 
-      before { get :show, id: FactoryGirl.create(:post) }
-      it { assigns(:post).should_not be_nil }
-      it { response.should be_successful }
+
+      context 'published post' do
+        before { get :show, id: Factory.create(:published_post) }
+        it { assigns(:post).should_not be_nil }
+        it { response.should be_successful }
+      end
+
+      context 'expired post' do
+        before { get :show, id: Factory(:expired_post) }
+        it { response.response_code.should == 404 }
+      end
     end
 
     describe '#edit' do 
 
       before do 
-        @user = User.create!(name: 'Josh', email: 'josh@company.com', password: 'secret', role: 'publisher')
+        @user = User.create(name: 'Josh', email: 'josh@company.com', password: 'secret', role: 'publisher')
         @post = @user.posts.build(title: 'Looking for a job', description: 'Apply here', location: 'Aichi-ken, Toyohashi-shi')
         @post.save
       end
@@ -74,7 +99,7 @@
     describe '#tags' do 
       context 'with data, one tag only' do
         before do
-          @post = FactoryGirl.create(:post, tags: 'shizuoka-ken')
+          @post = FactoryGirl.create(:published_post, tags: 'shizuoka-ken')
           get :tags, tags: 'shizuoka-ken'
         end
         it { assigns(:posts).should_not be_nil }
@@ -82,9 +107,9 @@
       end
       context 'with data, two tags' do
         before do
-          FactoryGirl.create(:post, tags: 'shizuoka-ken,aichi-ken', status: 'published')
-          FactoryGirl.create(:post, tags: 'shizuoka-ken,aichi-ken', status: 'pending')
-          FactoryGirl.create(:post, tags: 'shizuoka-ken,aichi-ken', status: 'pending')
+          FactoryGirl.create(:published_post, tags: 'shizuoka-ken,aichi-ken', status: 'published')
+          FactoryGirl.create(:published_post, tags: 'shizuoka-ken,aichi-ken', status: 'pending')
+          FactoryGirl.create(:published_post, tags: 'shizuoka-ken,aichi-ken', status: 'pending')
           get :tags, tags: 'shizuoka-ken'
         end
         it { assigns(:posts).should_not be_nil }

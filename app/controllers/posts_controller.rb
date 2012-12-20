@@ -13,7 +13,9 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def show;  end
+  def show
+    render :file => "#{Rails.root}/public/404.html", :status => :not_found if @post.status == 'expired'
+  end
 
   def create
     @post = current_user.posts.build(params[:post])
@@ -51,7 +53,7 @@ class PostsController < ApplicationController
   end
 
   def feeds
-    @posts = Post.all(:select => 'id, title, description, location, status, published_at', :limit => 10)
+    @posts = Post.published
     
     respond_to do |format|
       format.rss { render layout: false }
@@ -70,4 +72,5 @@ class PostsController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+
 end

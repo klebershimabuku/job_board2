@@ -160,9 +160,9 @@ describe "UserPages" do
     context 'when user is a publisher' do 
       let(:user) { FactoryGirl.create(:user, role: 'publisher') }
       before do
-        2.times { FactoryGirl.create(:post, status: 'approved', user_id: user.id) }
-        1.times { FactoryGirl.create(:post, status: 'pending', user_id: user.id) }
-        3.times { FactoryGirl.create(:post, status: 'suspended', user_id: user.id) }
+        2.times { FactoryGirl.create(:approved_post, user_id: user.id) }
+        1.times { FactoryGirl.create(:pending_post, user_id: user.id) }
+        3.times { FactoryGirl.create(:suspended_post, user_id: user.id) }
         valid_signin user
         visit user_path(user)
       end
@@ -226,9 +226,9 @@ describe "UserPages" do
     context 'when user is a member' do 
       let(:user) { FactoryGirl.create(:user, role: 'member') }
       before do
-        2.times { FactoryGirl.create(:post, status: 'approved', user_id: user.id) }
-        1.times { FactoryGirl.create(:post, status: 'pending', user_id: user.id) }
-        3.times { FactoryGirl.create(:post, status: 'suspended', user_id: user.id) }
+        2.times { FactoryGirl.create(:approved_post, user_id: user.id) }
+        1.times { FactoryGirl.create(:pending_post, user_id: user.id) }
+        3.times { FactoryGirl.create(:suspended_post, user_id: user.id) }
         valid_signin user
         visit user_path(user)
       end
