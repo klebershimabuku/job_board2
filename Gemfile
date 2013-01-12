@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 source 'http://gemcutter.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.11'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'devise', '2.0.4'
