@@ -20,7 +20,7 @@ describe 'Agency Index page' do
     end
   end
 
-  it { should have_selector('h3', text: 'Onde encontrar na sua província') }
+  it { should have_selector('h4', text: 'Onde encontrar na sua província') }
 end
 
 describe 'Agency / Gifu-ken page' do

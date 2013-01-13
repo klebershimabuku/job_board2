@@ -13,7 +13,7 @@
   <div class='span3'>
     <ul class='provinces-list'>
       <div class='page-header'>
-        <h3>Onde encontrar na sua província:</h3>
+        <h4>Onde encontrar na sua província:</h4>
       </div>
       <% @prefectures.each do |prefecture| %>
       <li><%= link_to prefecture.name, list_companies_path(prefecture.name.downcase) %></li>

@@ -414,10 +414,10 @@ label.collection_check_boxes {
 
 /* Facebook Box - Posts (sidebar) */
 #facebook, #twitter, #feed {
-  margin-top: 10px;
+  margin-top: 5px;
   padding-top: 20px;
 
-  h3 {
+  h4 {
     background-color: #2B8FD9;
     color: #FFF;
     padding: 8px;
@@ -425,13 +425,12 @@ label.collection_check_boxes {
 }
 /* forms */
 
-input, textarea, select, .uneditable-input {
-  border: 1px solid #bbb;
-  width: 100%;
-  padding: 10px;
-  height: auto;
-  margin-bottom: 15px;
-  @include box_sizing;
+/* Login box */
+.login_box {
+  background-color: #EEE;
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-bottom: 10px;
 }
 
 /* Contact form */

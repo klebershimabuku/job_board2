@@ -19,11 +19,11 @@ describe "PostPages" do
       visit posts_path
     end
     it { should have_selector('title', text: 'Empregos no Japão') }
-    it { should have_selector('h4', text: 'Filtre anúncios por região') }
+    it { should have_selector('h5', text: 'Filtre anúncios por região') }
 
     it 'lists each published job' do 
       Post.published.each do |p|
-        should have_selector('h3', text: p.title)
+        should have_selector('h4', text: p.title)
         should have_selector('p', text: p.location)
         should have_link(p.tags, href: tags_filter_post_path(p.tags) )
       end
