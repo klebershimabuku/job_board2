@@ -12,6 +12,25 @@ FactoryGirl.define do
     end
   end
 
+  factory :publisher_with_contact_info, :class => "User" do
+    sequence(:name) { |n| "Person #{n}" } 
+    sequence(:email) { |n| "person#{n}@example.com" }
+    password "foobar"
+    password_confirmation "foobar"
+    sign_in_count 1
+    role "publisher"
+    contact_info { Factory(:contact_info) }
+  end
+
+  factory :publisher_without_contact_info, :class => "User" do
+    sequence(:name) { |n| "Person #{n}" } 
+    sequence(:email) { |n| "person#{n}@example.com" }
+    password "foobar"
+    password_confirmation "foobar"
+    sign_in_count 1
+    role "publisher"
+  end
+
   factory :published_post, :class => Post do
     title "Some title"
     description "Type some text here"
@@ -60,7 +79,6 @@ FactoryGirl.define do
   factory :contact_info do 
     title "Company Name"
     description "Address here, phone numbers and email addres"
-    association :user
   end
 
   factory :prefecture do 

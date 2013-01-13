@@ -1,24 +1,44 @@
 <% provide(:title, "Entrar") %>
-<h1>Iniciar sessão</h1>
-
 <div class="row">
-  <div class="span6 offset3">
+  <div class="span8">
+    <br>
+    <br>
+    <br>
+    <p class="lead">Use sua conta do ShigotoDoko para:</p>
+    <br>
+    <p class="text-info"><strong>Empresas</strong></p>
+    <p>Gerenciar anúncios de emprego.</p>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <p><%= f.label :email %>
-  <%= f.email_field :email %></p>
+    <h5>- Através do nosso painel de controle, crie, edite e suspenda anúncios de forma rápida e fácil</h5>
+    <br>
+    <p class="text-info"><strong>Usuários</strong></p>
+    <p>Criar seu perfil.</p>
+    <br>
 
-  <p><%= f.label :password, "Senha" %>
-  <%= f.password_field :password %></p>
-
-  <% if devise_mapping.rememberable? -%>
-    <p><%= f.check_box :remember_me %> <%= f.label :remember_me, "Lembrar minha senha" %></p>
-  <% end -%>
-
-  <p><%= f.submit "Entrar", class: "btn btn-large btn-primary" %></p>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <div class='center'>
+      <p>Novo usuário? <%= link_to "Cadastre-se", new_registration_path(resource_name), class: 'btn btn-success btn-large' %></p>
+    <% end -%>
+  </div>
 
   </div>
+  <div class="span4">
+    <h2>Login</h2>
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <p><%= f.label :email %>
+      <%= f.email_field :email %></p>
+
+      <p><%= f.label :password, "Senha" %>
+      <%= f.password_field :password %></p>
+
+      <% if devise_mapping.rememberable? -%>
+        <p><%= f.check_box :remember_me %> <%= f.label :remember_me, "Lembrar minha senha" %></p>
+      <% end -%>
+
+      <p><%= f.submit "Entrar", class: "btn btn-large btn-primary" %></p>
+    <% end %>
+    <%= render :partial => "devise/shared/links" %>
+  </div>
 </div>
+
+</span>

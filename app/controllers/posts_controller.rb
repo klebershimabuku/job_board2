@@ -67,9 +67,14 @@ class PostsController < ApplicationController
   end
 
   def check_for_contact_information
-    if current_user.contact_info.nil?
+    if current_user.role == 'publisher' && current_user.contact_info.nil?
       flash[:error] = "Informações para contato não encontradas."
       redirect_to user_path(current_user)
+    elsif current_user.role == 'publisher'&& current_user.contact_info.present?
+      return
+    else
+      flash[:error] = "Acesso Negado"
+      redirect_to root_path
     end
   end
 

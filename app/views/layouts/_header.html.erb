@@ -3,15 +3,8 @@
     <div class="container">
       <%= link_to "shigotodoko", posts_path, id: "logo" %>
       <nav>
+      <%= link_to 'Enviar anúncio de emprego', new_post_path, { :method => :get, class: 'btn btn-mini btn-primary' } %>
         <ul class="nav pull-right">
-          <% if current_user && current_user.role == 'announcer' %>
-          <li>
-            <a href='/posts/new'>
-              <i class='icon-file'></i>
-              Novo anúncio
-            </a>
-          </li>
-          <% end %>
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to 'Empreiteiras', prefectures_companies_path %></li>
           <li><%= link_to 'Hello Work', hello_work_agencies_path %></li>

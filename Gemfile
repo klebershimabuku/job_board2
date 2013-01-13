@@ -3,7 +3,6 @@ source 'http://gemcutter.org'
 
 gem 'rails', '3.2.11'
 gem 'jquery-rails'
-gem 'bootstrap-sass'
 gem 'devise', '2.0.4'
 gem 'cancan', '1.6.7'
 gem 'faker', '1.0.1'
@@ -53,7 +52,8 @@ group :production do
 end
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
+  gem 'sass-rails', '~> 3.2'
+  gem 'bootstrap-sass', '2.2.2.0'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'font-awesome-sass-rails', '2.0.0.0'

@@ -54,11 +54,11 @@ describe "UserPages" do
     describe "signin page" do
       before { visit new_user_session_path }
       it { should have_selector('title', text: "Entrar") }
-      it { should have_selector('h1', text: "Iniciar sessão") }
+      it { should have_selector('h2', text: "Login") }
 
       describe "with invalid information" do
         before { click_button 'Entrar' }
-        it { should have_selector('h1', text: "Iniciar sessão")}
+        it { should have_selector('h2', text: "Login")}
         it { should have_error_message("E-mail ou senha inválidos.") }
 
         describe "after visiting another page" do
@@ -129,7 +129,7 @@ describe "UserPages" do
         click_button "Enviar instruções para definir uma nova senha" 
       end
       it { should have_info_message("Dentro de minutos, você receberá um e-mail com instruções para a troca da sua senha." )}
-      it { should have_selector('h1', text: "Iniciar sessão")}
+      it { should have_selector('h2', text: "Login")}
 
       describe "setting a new password page" do
         before do
