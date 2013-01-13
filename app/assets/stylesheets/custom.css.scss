@@ -425,6 +425,15 @@ label.collection_check_boxes {
 }
 /* forms */
 
+textarea {
+  border: 1px solid #bbb;
+  width: 100%;
+  padding: 10px;
+  height: auto;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
 /* Login box */
 .login_box {
   background-color: #EEE;

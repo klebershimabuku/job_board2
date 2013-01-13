@@ -4,16 +4,16 @@
     <li>
       <div class='row-fluid'>
         <div class='span12'>
-          <div class='pull-left'>
+          <div class='span8 pull-left'>
             <h4><%= link_to post.title, post_path(post) %></h4>
             <p class='location'><%= post.location %></p>
             <p>Tags: 
               <%= link_tags(post.tags) %>
             </p>
           </div>
-          <div class='pull-right'>
-            <p class='created_at'><%= timeago_tag post.published_at %></p>
-            <p><span class='company_name label label-company-name'><%= post.user.try(:contact_info).try(:title) %></span></p>
+          <div class='span4 offset0 pull-right'>
+            <p class='created_at pull-right'><%= timeago_tag post.published_at %></p>
+            <p class='pull-right'><span class='company_name label label-company-name'><%= post.user.try(:contact_info).try(:title) %></span></p>
           </div>
         </div>
       </div>
