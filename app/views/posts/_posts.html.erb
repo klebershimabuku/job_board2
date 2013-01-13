@@ -12,7 +12,7 @@
             </p>
           </div>
           <div class='span4 offset0 pull-right'>
-            <p class='created_at pull-right'><%= timeago_tag post.published_at %></p>
+            <p class='created_at'><%= timeago_tag post.published_at %></p>
             <p class='pull-right'><span class='company_name label label-company-name'><%= post.user.try(:contact_info).try(:title) %></span></p>
           </div>
         </div>
