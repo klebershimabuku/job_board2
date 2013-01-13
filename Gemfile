@@ -19,6 +19,8 @@ gem 'rails_autolink', '1.0.7'
 gem 'capistrano'
 gem 'therubyracer'
 gem 'nokogiri'
+gem 'bootstrap-sass', '2.2.2.0'
+
 
 group :developement, :test do 
   gem 'pg', '0.14.0'
@@ -53,7 +55,6 @@ end
 
 group :assets do
   gem 'sass-rails', '~> 3.2'
-  gem 'bootstrap-sass', '2.2.2.0'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'font-awesome-sass-rails', '2.0.0.0'
