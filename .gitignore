@@ -16,6 +16,7 @@
 
 # Ignore config file
 /config/database.yml
+/config/config.yml
 coverage
 
 # Ignore development config

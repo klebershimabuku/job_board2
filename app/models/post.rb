@@ -57,10 +57,18 @@ class Post < ActiveRecord::Base
   def publish!
     update_column(:status, 'published')
     update_column(:published_at, Time.now)
+
+    publish_on_facebook
   end
   
   def published?
     status == 'published'
+  end
+
+  def publish_on_facebook
+    link = "http://www.shigotodoko.com/posts/#{id}"
+    
+    Facebook.publish(title, link, description[0..289])
   end
   
   def expire!

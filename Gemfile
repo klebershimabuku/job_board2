@@ -19,6 +19,7 @@ gem 'rails_autolink', '1.0.7'
 gem 'capistrano'
 gem 'therubyracer'
 gem 'nokogiri'
+gem 'fb_graph', '2.6.2'
 
 group :developement, :test do 
   gem 'pg', '0.14.0'
@@ -28,6 +29,7 @@ group :developement, :test do
   gem 'annotate', '~> 2.4.1.beta'
   gem 'quiet_assets'
   gem 'test-unit', :require => 'test/unit'
+  gem 'pry'
 end
 
 group :test do 
